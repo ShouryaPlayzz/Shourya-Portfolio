@@ -1,0 +1,693 @@
+/* ==========================================================================
+   SHOURYA RANA PORTFOLIO - HIGH-IMPACT MOTION & LUXE CYBER STYLES
+   ========================================================================== */
+
+:root {
+  --font-display: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* Light Theme Variables */
+  --bg-primary: #faf8ff;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: rgba(255, 255, 255, 0.85);
+  --border-subtle: rgba(226, 232, 240, 0.8);
+  --border-focus: #2563eb;
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --accent-blue: #2563eb;
+  --accent-indigo: #4f46e5;
+  --accent-purple: #9333ea;
+  --accent-cyan: #06b6d4;
+  --accent-emerald: #10b981;
+  --glow-color: rgba(37, 99, 235, 0.2);
+  --card-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.05), 0 0 0 1px rgba(226, 232, 240, 0.6);
+  --card-hover-shadow: 0 25px 50px -12px rgba(37, 99, 235, 0.18), 0 0 0 1px rgba(37, 99, 235, 0.3);
+}
+
+/* Dark Theme Overrides */
+html.dark {
+  --bg-primary: #090d16;
+  --bg-surface: #0f172a;
+  --bg-surface-elevated: rgba(15, 23, 42, 0.85);
+  --border-subtle: rgba(51, 65, 85, 0.6);
+  --border-focus: #60a5fa;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --text-muted: #94a3b8;
+  --glow-color: rgba(96, 165, 250, 0.25);
+  --card-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(51, 65, 85, 0.5);
+  --card-hover-shadow: 0 25px 50px -12px rgba(96, 165, 250, 0.22), 0 0 0 1px rgba(96, 165, 250, 0.4);
+}
+
+html.dark body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Base resets & layout */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 6rem;
+}
+
+body {
+  overflow-x: hidden;
+  position: relative;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Hide default scrollbars for sleek app aesthetic */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.4);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(37, 99, 235, 0.6);
+}
+
+/* Selection Color */
+::selection {
+  background-color: rgba(37, 99, 235, 0.25);
+  color: #1d4ed8;
+}
+html.dark ::selection {
+  background-color: rgba(96, 165, 250, 0.3);
+  color: #93c5fd;
+}
+
+/* ==========================================================================
+   CUSTOM MAGNETIC CURSOR & TRAIL
+   ========================================================================== */
+.custom-cursor-dot {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: #2563eb;
+  border-radius: 50%;
+  z-index: 99999;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+              height 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+              background 0.2s ease,
+              opacity 0.2s ease;
+  box-shadow: 0 0 10px rgba(37, 99, 235, 0.8);
+}
+
+.custom-cursor-ring {
+  pointer-events: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid rgba(37, 99, 235, 0.5);
+  border-radius: 50%;
+  z-index: 99998;
+  transform: translate(-50%, -50%);
+  transition: width 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              height 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              border-color 0.2s ease,
+              background-color 0.2s ease,
+              transform 0.1s ease-out;
+  backdrop-filter: blur(1px);
+}
+
+.custom-cursor-ring.cursor-hover {
+  width: 58px;
+  height: 58px;
+  border-color: rgba(79, 70, 229, 0.8);
+  background-color: rgba(99, 102, 241, 0.08);
+}
+
+.custom-cursor-ring.cursor-active {
+  width: 26px;
+  height: 26px;
+  border-color: #2563eb;
+  background-color: rgba(37, 99, 235, 0.2);
+}
+
+/* Click Shockwave Effect */
+.click-shockwave {
+  position: fixed;
+  pointer-events: none;
+  border-radius: 50%;
+  border: 2px solid rgba(37, 99, 235, 0.8);
+  transform: translate(-50%, -50%) scale(0);
+  animation: shockwaveExpand 0.65s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+  z-index: 99997;
+}
+
+@keyframes shockwaveExpand {
+  0% {
+    width: 10px;
+    height: 10px;
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.1);
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.8), inset 0 0 10px rgba(79, 70, 229, 0.5);
+  }
+  100% {
+    width: 160px;
+    height: 160px;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+    box-shadow: 0 0 35px rgba(147, 51, 234, 0), inset 0 0 20px rgba(37, 99, 235, 0);
+  }
+}
+
+/* Disable custom cursor on touch devices for maximum mobile polish */
+@media (pointer: coarse) {
+  .custom-cursor-dot, .custom-cursor-ring {
+    display: none !important;
+  }
+}
+
+/* ==========================================================================
+   ANIMATIONS & SHIMMER EFFECTS
+   ========================================================================== */
+@keyframes borderGlow {
+  0%, 100% {
+    border-color: rgba(37, 99, 235, 0.4);
+    box-shadow: 0 0 25px rgba(37, 99, 235, 0.15), 0 10px 30px rgba(15, 23, 42, 0.05);
+  }
+  50% {
+    border-color: rgba(147, 51, 234, 0.5);
+    box-shadow: 0 0 45px rgba(147, 51, 234, 0.25), 0 15px 35px rgba(147, 51, 234, 0.1);
+  }
+}
+
+.spotlight-card-glow {
+  animation: borderGlow 6s ease-in-out infinite;
+}
+
+@keyframes shimmerWave {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.text-shimmer {
+  background: linear-gradient(90deg, #1e293b 0%, #2563eb 25%, #7c3aed 50%, #2563eb 75%, #1e293b 100%);
+  background-size: 200% auto;
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: shimmerWave 8s linear infinite;
+}
+
+html.dark .text-shimmer {
+  background: linear-gradient(90deg, #f8fafc 0%, #60a5fa 25%, #c084fc 50%, #60a5fa 75%, #f8fafc 100%);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@keyframes pulseGlow {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.08); opacity: 0.95; }
+}
+
+.ambient-pulse {
+  animation: pulseGlow 5s ease-in-out infinite;
+}
+
+/* Interactive 3D Tilt Card with Glare Reflection */
+.tilt-card {
+  position: relative;
+  transition: transform 0.25s cubic-bezier(0.2, 0.8, 0.2, 1),
+              box-shadow 0.3s ease,
+              border-color 0.3s ease;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+.tilt-card:hover {
+  box-shadow: var(--card-hover-shadow);
+}
+
+.tilt-glare {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(255, 255, 255, 0.25) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  mix-blend-mode: overlay;
+  z-index: 10;
+}
+
+html.dark .tilt-glare {
+  background: radial-gradient(circle at var(--glare-x, 50%) var(--glare-y, 50%), rgba(96, 165, 250, 0.2) 0%, transparent 65%);
+}
+
+.tilt-card:hover .tilt-glare {
+  opacity: 1;
+}
+
+/* Button Shimmer */
+.btn-glow-shimmer {
+  position: relative;
+  background-size: 200% auto;
+  background-image: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #2563eb 100%);
+  animation: shimmerWave 5s ease infinite;
+}
+
+/* Floating Badges Animation */
+@keyframes floatGentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+.float-badge {
+  animation: floatGentle 4s ease-in-out infinite;
+}
+
+/* Kinetic Marquee Ticker */
+.marquee-container {
+  display: flex;
+  overflow: hidden;
+  user-select: none;
+  gap: 2rem;
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.marquee-content {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-around;
+  min-width: 100%;
+  gap: 2rem;
+  animation: scrollMarquee 24s linear infinite;
+}
+
+@keyframes scrollMarquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-100%); }
+}
+
+.marquee-container:hover .marquee-content {
+  animation-play-state: paused;
+}
+
+/* ==========================================================================
+   HYPERSPACE WARP / SHOCK MODE CANVAS
+   ========================================================================== */
+#hyperspace-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100000;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+#hyperspace-canvas.active {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* Shock Mode HUD Overlay */
+.shock-hud {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 100001;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease, transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  text-align: center;
+}
+
+.shock-hud.active {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* Scanline Overlay for Cyber Look in Shock Mode */
+.scanlines {
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+              linear-gradient(90deg, rgba(255, 0, 0, 0.04), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.04));
+  background-size: 100% 3px, 6px 100%;
+  pointer-events: none;
+}
+
+/* ==========================================================================
+   MODALS & DRAWERS
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 9000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.modal-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.modal-content {
+  background: #ffffff;
+  border-radius: 1.5rem;
+  max-width: 960px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 25px 60px -15px rgba(15, 23, 42, 0.25);
+  transform: scale(0.94) translateY(20px);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html.dark .modal-content {
+  background: #0f172a;
+  border-color: rgba(51, 65, 85, 0.8);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7);
+}
+
+.modal-backdrop.open .modal-content {
+  transform: scale(1) translateY(0);
+}
+
+/* Slide-Over Drawer */
+.drawer-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(8px);
+  z-index: 9000;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.drawer-backdrop.open {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.drawer-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 580px;
+  background: #ffffff;
+  box-shadow: -10px 0 35px rgba(15, 23, 42, 0.15);
+  z-index: 9001;
+  transform: translateX(100%);
+  transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+html.dark .drawer-panel {
+  background: #0f172a;
+  border-left: 1px solid rgba(51, 65, 85, 0.8);
+  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.6);
+}
+
+.drawer-backdrop.open .drawer-panel {
+  transform: translateX(0);
+}
+
+/* Vector Grid Overlay on Design Modal */
+.vector-construction-grid {
+  background-image: 
+    radial-gradient(circle, rgba(37, 99, 235, 0.4) 1px, transparent 1px),
+    linear-gradient(to right, rgba(37, 99, 235, 0.15) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(37, 99, 235, 0.15) 1px, transparent 1px);
+  background-size: 24px 24px, 48px 48px, 48px 48px;
+  mix-blend-mode: color-dodge;
+  pointer-events: none;
+}
+
+/* Interactive Confetti / Spark Particle Canvas */
+#confetti-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 99990;
+  pointer-events: none;
+}
+
+/* Audio Visualizer Spectrum Bars */
+.audio-bar {
+  transition: height 0.08s ease, background-color 0.2s ease;
+}
+
+/* Live Telemetry Ping Animation */
+@keyframes pingSlow {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+.ping-slow {
+  animation: pingSlow 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* ==========================================================================
+   FORM CHIPS & INTERACTIVE OPTIONS (Services & Budget)
+   ========================================================================== */
+.form-chip {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border: 1.5px solid rgba(226, 232, 240, 0.9);
+  background-color: #ffffff;
+  color: #475569;
+  border-radius: 0.875rem;
+  padding: 0.65rem 0.75rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+}
+
+html.dark .form-chip {
+  border-color: rgba(51, 65, 85, 0.8);
+  background-color: #1e293b;
+  color: #cbd5e1;
+}
+
+.form-chip:hover {
+  border-color: #3b82f6;
+  transform: translateY(-1px);
+}
+
+.form-chip:active {
+  transform: scale(0.97);
+}
+
+/* Checked State for Services */
+input[name="service"]:checked + .form-chip {
+  background-color: #2563eb !important;
+  border-color: #2563eb !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Checked State for Budget Options */
+input[name="budget"]:checked + .form-chip {
+  background-color: #4f46e5 !important;
+  border-color: #4f46e5 !important;
+  color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(79, 70, 229, 0.35);
+  transform: translateY(-1px) scale(1.02);
+}
+
+/* Input Validation Shake */
+@keyframes shakeInput {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-6px); }
+  40%, 80% { transform: translateX(6px); }
+}
+
+.input-error {
+  animation: shakeInput 0.4s ease;
+  border-color: #ef4444 !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25) !important;
+}
+
+/* ==========================================================================
+   DARK MODE REFINED UTILITIES
+   ========================================================================== */
+html.dark .bg-white:not(.form-chip):not(.btn-glow-shimmer):not([data-keep-bg]):not(.nav-pill) {
+  background-color: #0f172a !important;
+}
+
+html.dark .bg-slate-50:not(.form-chip):not(.nav-pill),
+html.dark .bg-slate-100:not(.form-chip):not(.nav-pill) {
+  background-color: #1e293b !important;
+}
+
+html.dark .border-slate-200:not(.form-chip),
+html.dark .border-slate-100:not(.form-chip) {
+  border-color: #334155 !important;
+}
+
+html.dark .text-slate-900:not(.btn-glow-shimmer):not(.form-chip):not(.nav-pill) {
+  color: #f8fafc !important;
+}
+
+html.dark .text-slate-700:not(.btn-glow-shimmer):not(.form-chip):not(.nav-pill) {
+  color: #cbd5e1 !important;
+}
+
+html.dark .text-slate-600:not(.btn-glow-shimmer):not(.form-chip):not(.nav-pill) {
+  color: #94a3b8 !important;
+}
+
+html.dark header {
+  background-color: rgba(15, 23, 42, 0.85) !important;
+  border-color: rgba(51, 65, 85, 0.7) !important;
+}
+
+html.dark footer {
+  background-color: #0b1120 !important;
+  border-color: rgba(51, 65, 85, 0.7) !important;
+}
+
+html.dark .bg-slate-100\/80 {
+  background-color: rgba(30, 41, 59, 0.8) !important;
+}
+
+/* ==========================================================================
+   ACTIVE NAVIGATION PILLS (Scroll Spy)
+   ========================================================================== */
+.nav-pill {
+  transition: all 0.22s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+}
+
+.nav-pill.active {
+  background-color: #ffffff !important;
+  color: #2563eb !important;
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15) !important;
+  font-weight: 700 !important;
+}
+
+html.dark .nav-pill.active {
+  background-color: #334155 !important;
+  color: #60a5fa !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35) !important;
+}
+
+/* ==========================================================================
+   HIRE PAGE / ORDER SCOPER STYLES & DARK THEME OVERRIDES
+   ========================================================================== */
+@keyframes neon-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+@keyframes electric-flow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes pulse-ring {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.15); opacity: 0.3; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.neon-beam-container {
+  position: relative;
+  overflow: hidden;
+}
+.neon-beam-container::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: conic-gradient(from 0deg, transparent 0deg, transparent 270deg, #2563eb 320deg, #6063ee 345deg, #00d2ff 360deg);
+  animation: neon-spin 4s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+.neon-beam-inner {
+  position: relative;
+  z-index: 1;
+}
+.electric-shimmer-line {
+  background: linear-gradient(90deg, #2563eb, #6063ee, #00d2ff, #2563eb);
+  background-size: 300% 100%;
+  animation: electric-flow 3s ease infinite;
+}
+.spring-pop:active {
+  transform: scale(0.95);
+}
+.selection-pop {
+  transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Dark mode overrides for Hire Page custom design tokens */
+html.dark .bg-surface-container-lowest {
+  background-color: #0f172a !important;
+  color: #f8fafc;
+}
+html.dark .bg-surface-container-low {
+  background-color: #161f36 !important;
+}
+html.dark .bg-surface-container {
+  background-color: #1e293b !important;
+}
+html.dark .bg-surface-container-high {
+  background-color: #243049 !important;
+}
+html.dark .bg-surface-container-highest {
+  background-color: #334155 !important;
+}
+html.dark .text-on-surface {
+  color: #f8fafc !important;
+}
+html.dark .text-on-surface-variant {
+  color: #94a3b8 !important;
+}
+html.dark .border-outline-variant\/20,
+html.dark .border-outline-variant\/30 {
+  border-color: rgba(51, 65, 85, 0.6) !important;
+}
+html.dark .bg-primary-fixed {
+  background-color: #1e3a8a !important;
+  color: #bfdbfe !important;
+}
+html.dark .text-on-primary-fixed-variant {
+  color: #dbeafe !important;
+}
+html.dark .bg-background {
+  background-color: #090d16 !important;
+}
+
+

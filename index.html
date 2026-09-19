@@ -1,0 +1,1683 @@
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>Shourya Rana — Founder, Entrepreneur &amp; Creative Technologist</title>
+  <meta name="description" content="Portfolio &amp; ventures of Shourya Rana, a 15-year-old founder and creative technologist who started entrepreneurship at age 10 and is currently building a future unicorn startup.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="logo-icon.png">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com" rel="preconnect">
+  <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#2563eb",
+            secondary: "#4f46e5",
+            background: "#faf8ff",
+            surface: "#ffffff"
+          },
+          fontFamily: {
+            "display-xl": ["Plus Jakarta Sans", "sans-serif"],
+            "headline-lg": ["Plus Jakarta Sans", "sans-serif"],
+            "body-md": ["Plus Jakarta Sans", "sans-serif"],
+            "mono-code": ["JetBrains Mono", "monospace"],
+            "label-caps": ["JetBrains Mono", "monospace"]
+          },
+          spacing: {
+            "space-2xs": "0.25rem",
+            "space-xs": "0.5rem",
+            "space-sm": "0.75rem",
+            "space-md": "1rem",
+            "space-lg": "1.5rem",
+            "space-xl": "2rem",
+            "space-2xl": "3rem",
+            "space-3xl": "4rem",
+            "space-4xl": "6rem",
+            "space-5xl": "8rem",
+            "gutter-mobile": "1.25rem",
+            "gutter-desktop": "2.5rem",
+            "container-max": "80rem"
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Three.js (r125) for 3D Holographic Core -->
+  <script src="https://ajax.googleapis.com/ajax/libs/threejs/r125/three.min.js"></script>
+
+  <!-- Custom High-Impact Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body id="top" class="bg-[#faf8ff] dark:bg-[#090d16] font-body-md text-slate-900 dark:text-slate-100 antialiased min-h-screen selection:bg-blue-200 dark:selection:bg-blue-900/60 selection:text-primary transition-colors duration-300">
+
+  <!-- Hyperspace Warp Canvas (Shock Mode) -->
+  <canvas id="hyperspace-canvas"></canvas>
+  <div id="shock-hud" class="shock-hud">
+    <div class="px-6 py-4 rounded-3xl bg-black/80 border border-blue-500/80 backdrop-blur-xl text-white flex flex-col items-center gap-2 shadow-[0_0_50px_rgba(37,99,235,0.6)]">
+      <div class="flex items-center gap-2">
+        <span class="h-3 w-3 rounded-full bg-blue-500 animate-ping"></span>
+        <span class="font-mono-code text-sm font-bold text-blue-400 uppercase tracking-widest">HYPERSPACE WARP ENGAGED</span>
+      </div>
+      <span class="font-mono-code text-xs text-slate-300">VELOCITY: WARP 9.9 • QUANTUM DRIVE ONLINE</span>
+      <span class="font-mono-code text-[10px] text-slate-400">Click anywhere to drop out of warp</span>
+    </div>
+  </div>
+
+  <!-- Confetti / Particle Canvas -->
+  <canvas id="confetti-canvas"></canvas>
+
+  <!-- ==================== HEADER / NAVIGATION ==================== -->
+  <header class="fixed top-0 inset-x-0 z-50 bg-white/85 dark:bg-slate-900/85 backdrop-blur-xl border-b border-slate-200/70 dark:border-slate-800 shadow-[0_4px_20px_rgba(15,23,42,0.04)] transition-colors duration-300">
+    <div class="h-20 max-w-container-max mx-auto px-gutter-mobile lg:px-gutter-desktop flex items-center justify-between gap-space-md">
+      
+      <!-- Brand & Name -->
+      <a href="#top" class="flex items-center gap-space-sm shrink-0 group">
+        <div class="p-1.5 rounded-2xl bg-white dark:bg-slate-800 shadow-sm border border-slate-100 dark:border-slate-700 flex items-center justify-center transition-transform group-hover:scale-105 group-hover:rotate-3">
+          <img alt="Shourya Logo" class="h-8 w-8 object-contain rounded-xl" src="logo-icon.png">
+        </div>
+        <div class="flex flex-col">
+          <span class="font-bold text-[17px] text-slate-900 dark:text-white tracking-tight leading-snug">Shourya Rana</span>
+          <span class="font-medium text-xs text-slate-500 dark:text-slate-400 tracking-wide">Founder, Creator &amp; Dev</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Links -->
+      <nav id="main-nav" class="hidden xl:flex items-center gap-1.5 p-1.5 rounded-full bg-slate-100/90 dark:bg-slate-800/90 border border-slate-200/60 dark:border-slate-700 backdrop-blur-md">
+        <a class="nav-pill active px-space-md py-1.5 rounded-full text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors" href="#top">About</a>
+        <a class="nav-pill px-space-md py-1.5 rounded-full text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors" href="#journey">Experience</a>
+        <a class="nav-pill px-space-md py-1.5 rounded-full text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors" href="#showcases">Portfolio</a>
+        <a class="nav-pill px-space-sm py-1.5 rounded-full font-label-caps text-[11px] text-slate-500 dark:text-slate-400 hover:text-primary transition-colors uppercase tracking-wider" href="#video-section">Video</a>
+        <a class="nav-pill px-space-sm py-1.5 rounded-full font-label-caps text-[11px] text-slate-500 dark:text-slate-400 hover:text-secondary transition-colors uppercase tracking-wider" href="#design-section">Design</a>
+        <a class="nav-pill px-space-sm py-1.5 rounded-full font-label-caps text-[11px] text-slate-500 dark:text-slate-400 hover:text-blue-500 transition-colors uppercase tracking-wider" href="#dev-section">Dev</a>
+        <a class="nav-pill px-space-md py-1.5 rounded-full text-xs font-semibold text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white transition-colors" href="hire.html">Hire / Order</a>
+      </nav>
+
+      <!-- Right Controls & CTA -->
+      <div class="flex items-center gap-2 sm:gap-space-sm shrink-0">
+        
+        <!-- "⚡ Shock Mode" Trigger Button -->
+        <button id="shock-mode-btn" class="px-3 py-1.5 rounded-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-mono-code text-[11px] font-bold tracking-wider uppercase shadow-[0_0_15px_rgba(37,99,235,0.4)] hover:scale-105 transition-all flex items-center gap-1.5" title="Trigger Hyperspace Shock Mode">
+          <span class="text-amber-300">⚡</span>
+          <span class="hidden sm:inline">Shock Mode</span>
+        </button>
+
+        <!-- Sound Toggle Button -->
+        <button id="sound-toggle-btn" class="p-2 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all flex items-center gap-1.5" title="Toggle Sound FX">
+          <span class="material-symbols-outlined text-base text-slate-400">volume_off</span>
+          <span class="hidden md:inline font-mono-code text-[11px] font-semibold">MUTED</span>
+        </button>
+
+        <!-- Dark/Light Theme Switcher -->
+        <button id="theme-toggle-btn" class="p-2 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 transition-all flex items-center justify-center" title="Toggle Theme">
+          <span class="material-symbols-outlined text-base">dark_mode</span>
+        </button>
+
+        <!-- Availability Badge -->
+        <div class="hidden lg:flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/60 border border-emerald-100 dark:border-emerald-800 shadow-sm">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-500 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <span class="font-label-caps text-[11px] font-semibold text-emerald-700 dark:text-emerald-300 uppercase tracking-wider">Available</span>
+        </div>
+
+        <!-- Get In Touch CTA -->
+        <a class="btn-glow-shimmer inline-flex items-center gap-1.5 px-space-md sm:px-space-lg py-2.5 rounded-full bg-primary hover:bg-blue-700 text-white text-xs font-bold transition-all shadow-[0_4px_14px_rgba(37,99,235,0.25)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.35)] hover:scale-105" href="hire.html">
+          <span>Hire Me</span>
+          <span class="material-symbols-outlined text-[16px]">arrow_forward</span>
+        </a>
+
+        <!-- Profile Avatar (Clickable to open Resume) -->
+        <button data-open-resume class="p-0.5 rounded-full ring-2 ring-blue-400/60 hover:ring-blue-500 transition-all hover:scale-105" title="View Shourya's Digital CV">
+          <img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxNE9Ny2rbWbVu5d6xf9IGwN7Rx5xWocD9UwXCo4KqFY1mWMFb04cFiCWr7-Bfm_Wdcslkol9oEQonRgpM7Yfld1X0VPKQyul0WwiRZTWQWvqCSCCYTG1fncGAhDXWLdW54WVeQi6vqg_vuWQbrBoTaHg318JgQ9x1-oJGtTji1v8jlSb8zGgOlFibTObFhc7UBrxtvCuXF7xoTZ4jibjMBz-5Ro6Fo5aIF3pbelg2Mk7Lz-v3c5QdfnZurrGJ1jfdOMk">
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ==================== MAIN PAGE CONTENT ==================== -->
+  <main class="w-full pt-24 relative overflow-hidden">
+
+    <!-- Interactive WebGL Fluid Shader Canvas Backdrop -->
+    <div class="fixed inset-0 w-full h-full opacity-35 dark:opacity-20 pointer-events-none z-0">
+      <canvas id="shader-canvas-ANIMATION_8" class="w-full h-full block"></canvas>
+      <script>
+        (function() {
+          const canvas = document.getElementById('shader-canvas-ANIMATION_8');
+          function syncSize() {
+            const dpr = Math.min(window.devicePixelRatio || 1, 1.25);
+            const w = Math.floor((window.innerWidth || 1280) * dpr);
+            const h = Math.floor((window.innerHeight || 720) * dpr);
+            if (canvas.width !== w || canvas.height !== h) {
+              canvas.width  = w;
+              canvas.height = h;
+            }
+          }
+          if (typeof ResizeObserver !== 'undefined') {
+            new ResizeObserver(syncSize).observe(canvas);
+          }
+          syncSize();
+
+          const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+          if (!gl) return;
+          const vs = `attribute vec2 a_position;
+          varying vec2 v_texCoord;
+          void main() {
+            v_texCoord = a_position * 0.5 + 0.5;
+            gl_Position = vec4(a_position, 0.0, 1.0);
+          }`;
+          const fs = `precision highp float;
+          uniform float u_time;
+          uniform vec2 u_resolution;
+          uniform vec2 u_mouse;
+
+          vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+          vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+          vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
+          vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
+
+          float snoise(vec3 v) {
+            const vec2 C = vec2(1.0/6.0, 1.0/3.0);
+            const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+            vec3 i  = floor(v + dot(v, C.yyy));
+            vec3 x0 = v - i + dot(i, C.xxx);
+            vec3 g = step(x0.yzx, x0.xyz);
+            vec3 l = 1.0 - g;
+            vec3 i1 = min(g.xyz, l.zxy);
+            vec3 i2 = max(g.xyz, l.zxy);
+            vec3 x1 = x0 - i1 + C.xxx;
+            vec3 x2 = x0 - i2 + C.yyy;
+            vec3 x3 = x0 - D.yyy;
+            i = mod289(i);
+            vec4 p = permute(permute(permute(
+                       i.z + vec4(0.0, i1.z, i2.z, 1.0))
+                     + i.y + vec4(0.0, i1.y, i2.y, 1.0))
+                     + i.x + vec4(0.0, i1.x, i2.x, 1.0));
+            float n_ = 0.142857142857;
+            vec3 ns = n_ * D.wyz - D.xzx;
+            vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+            vec4 x_ = floor(j * ns.z);
+            vec4 y_ = floor(j - 7.0 * x_);
+            vec4 x = x_ *ns.x + ns.yyyy;
+            vec4 y = y_ *ns.x + ns.yyyy;
+            vec4 h = 1.0 - abs(x) - abs(y);
+            vec4 b0 = vec4(x.xy, y.xy);
+            vec4 b1 = vec4(x.zw, y.zw);
+            vec4 s0 = floor(b0)*2.0 + 1.0;
+            vec4 s1 = floor(b1)*2.0 + 1.0;
+            vec4 sh = -step(h, vec4(0.0));
+            vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;
+            vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;
+            vec3 p0 = vec3(a0.xy, h.x);
+            vec3 p1 = vec3(a0.zw, h.y);
+            vec3 p2 = vec3(a1.xy, h.z);
+            vec3 p3 = vec3(a1.zw, h.w);
+            vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
+            p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
+            vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+            m = m * m;
+            return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+          }
+
+          void main() {
+              vec2 st = gl_FragCoord.xy / u_resolution.xy;
+              vec2 mouse = u_mouse / u_resolution.xy;
+              if (length(u_mouse) < 1.0) {
+                  mouse = vec2(0.5 + sin(u_time * 0.4) * 0.2, 0.5 + cos(u_time * 0.3) * 0.2);
+              }
+              
+              float dist = length(st - mouse);
+              float mouseWave = sin(dist * 18.0 - u_time * 2.5) * exp(-dist * 3.5) * 0.08;
+              vec2 uv = st + mouseWave;
+              
+              float t = u_time * 0.22;
+              float n1 = snoise(vec3(uv * 1.8, t));
+              float n2 = snoise(vec3(uv * 3.2 + vec2(n1 * 0.5), t * 1.2));
+              float n3 = snoise(vec3(uv * 5.0 - vec2(n2 * 0.3), t * 0.8));
+              
+              float fluid = n1 * 0.5 + n2 * 0.35 + n3 * 0.15;
+              
+              vec3 colBg = vec3(0.98, 0.97, 1.0);
+              vec3 colBlue = vec3(0.20, 0.45, 0.98);
+              vec3 colCyan = vec3(0.06, 0.72, 0.92);
+              vec3 colViolet = vec3(0.55, 0.28, 0.95);
+              vec3 colPearl = vec3(0.92, 0.95, 1.0);
+              
+              float caustics = smoothstep(0.7, 0.95, sin(fluid * 12.0 + u_time * 0.8));
+              
+              vec3 color = mix(colBg, colPearl, smoothstep(-0.5, 0.5, fluid));
+              color = mix(color, colBlue, smoothstep(0.1, 0.6, fluid) * 0.35);
+              color = mix(color, colViolet, smoothstep(0.4, 0.85, fluid) * 0.3);
+              color = mix(color, colCyan, caustics * 0.4);
+              
+              float mouseGlow = exp(-dist * 4.0) * 0.25;
+              color += vec3(0.2, 0.45, 0.95) * mouseGlow;
+              
+              gl_FragColor = vec4(color, 1.0);
+          }`;
+          function cs(type, src) {
+            const s = gl.createShader(type);
+            gl.shaderSource(s, src);
+            gl.compileShader(s);
+            return s;
+          }
+          const prog = gl.createProgram();
+          gl.attachShader(prog, cs(gl.VERTEX_SHADER, vs));
+          gl.attachShader(prog, cs(gl.FRAGMENT_SHADER, fs));
+          gl.linkProgram(prog);
+          gl.useProgram(prog);
+          const buf = gl.createBuffer();
+          gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+          gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
+          const pos = gl.getAttribLocation(prog, 'a_position');
+          gl.enableVertexAttribArray(pos);
+          gl.vertexAttribPointer(pos, 2, gl.FLOAT, false, 0, 0);
+          const uTime = gl.getUniformLocation(prog, 'u_time');
+          const uRes = gl.getUniformLocation(prog, 'u_resolution');
+          const uMouse = gl.getUniformLocation(prog, 'u_mouse');
+
+          let mouse = { x: canvas.width / 2, y: canvas.height / 2 };
+          window.addEventListener('mousemove', (event) => {
+            const rect = canvas.getBoundingClientRect();
+            if (rect.width && rect.height) {
+              const nx = (event.clientX - rect.left) / rect.width;
+              const ny = 1.0 - (event.clientY - rect.top) / rect.height;
+              mouse.x = nx * canvas.width;
+              mouse.y = ny * canvas.height;
+            }
+          });
+
+          let isTabVisible = true;
+          document.addEventListener('visibilitychange', () => {
+            isTabVisible = !document.hidden;
+            if (isTabVisible) requestAnimationFrame(render);
+          });
+
+          function render(t) {
+            if (!isTabVisible) return;
+            if (typeof ResizeObserver === 'undefined') syncSize();
+            gl.viewport(0, 0, canvas.width, canvas.height);
+            if (uTime) gl.uniform1f(uTime, t * 0.001);
+            if (uRes) gl.uniform2f(uRes, canvas.width, canvas.height);
+            if (uMouse) gl.uniform2f(uMouse, mouse.x, mouse.y);
+            gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+            requestAnimationFrame(render);
+          }
+          render(0);
+        })();
+      </script>
+    </div>
+
+    <!-- Ambient Glowing Orbs -->
+    <div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 w-[900px] h-[480px] bg-gradient-to-tr from-blue-300/30 via-indigo-200/30 to-sky-200/20 dark:from-blue-600/15 dark:via-indigo-600/10 blur-[130px] rounded-full ambient-pulse"></div>
+    <div class="pointer-events-none absolute top-[900px] -left-48 w-[600px] h-[600px] bg-purple-200/30 dark:bg-purple-900/15 blur-[150px] rounded-full"></div>
+    <div class="pointer-events-none absolute top-[2400px] -right-48 w-[700px] h-[700px] bg-sky-200/30 dark:bg-sky-900/15 blur-[160px] rounded-full"></div>
+
+    <!-- ==================== HERO SECTION ==================== -->
+    <section class="relative z-10 w-full max-w-container-max mx-auto px-gutter-mobile lg:px-gutter-desktop pt-space-lg lg:pt-space-2xl pb-space-3xl lg:pb-space-4xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl lg:gap-space-2xl items-center">
+        
+        <!-- Left Hero Typography -->
+        <div class="lg:col-span-7 flex flex-col items-start gap-space-md">
+          
+          <!-- Top Pill Badge -->
+          <div class="inline-flex items-center gap-2 px-space-md py-1.5 rounded-full bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-950/80 dark:to-indigo-950/80 border border-blue-200/80 dark:border-blue-700 text-primary dark:text-blue-400 shadow-sm backdrop-blur-sm float-badge">
+            <span class="inline-flex h-2 w-2 rounded-full bg-primary animate-ping"></span>
+            <span class="font-label-caps text-xs font-bold tracking-wider uppercase">Founder &amp; Entrepreneur • Started at Age 10</span>
+          </div>
+
+          <!-- Headline -->
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-[1.12]">
+            Founder, creative technologist &amp; <span class="bg-gradient-to-r from-blue-600 via-indigo-600 to-sky-500 dark:from-blue-400 dark:via-indigo-400 dark:to-sky-300 bg-clip-text text-transparent">building the next unicorn startup.</span>
+          </h1>
+
+          <!-- Narrative -->
+          <p class="text-lg sm:text-xl text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed font-normal">
+            15-year-old entrepreneur and multidisciplinary technologist based in Madhya Pradesh, India. Started entrepreneurship at <span class="text-slate-900 dark:text-white font-semibold">age 10</span>, currently building a transformative startup destined to achieve <span class="text-indigo-600 dark:text-indigo-400 font-bold">unicorn valuation</span> while shipping high-retention video stories, visual brand identities, and full-stack web platforms.
+          </p>
+
+          <!-- CTAs -->
+          <div class="flex flex-wrap items-center gap-space-sm pt-space-xs w-full sm:w-auto">
+            <a class="btn-glow-shimmer w-full sm:w-auto px-space-xl py-3.5 rounded-full bg-primary text-white font-bold text-sm hover:bg-blue-700 transition-all shadow-[0_6px_20px_rgba(37,99,235,0.28)] hover:-translate-y-0.5 flex items-center justify-center gap-2 group" href="#showcases">
+              <span>Explore Featured Works</span>
+              <span class="material-symbols-outlined text-sm group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </a>
+            
+            <button data-open-resume class="w-full sm:w-auto px-space-lg py-3.5 rounded-full bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-200 font-semibold text-sm border border-slate-200 dark:border-slate-700 shadow-sm transition-all flex items-center justify-center gap-2 hover:-translate-y-0.5 hover:border-blue-400">
+              <span class="material-symbols-outlined text-base text-primary">description</span>
+              <span>Resume • Let's Talk</span>
+            </button>
+          </div>
+
+          <!-- Micro Metadata Tags -->
+          <div class="pt-space-sm flex flex-wrap items-center gap-y-2 gap-x-space-lg text-slate-500 dark:text-slate-400 font-mono-code text-xs">
+            <div class="flex items-center gap-1.5 font-bold text-amber-600 dark:text-amber-400 bg-amber-50 dark:bg-amber-950/50 px-2.5 py-1 rounded-full border border-amber-200 dark:border-amber-800/60 shadow-xs">
+              <span class="material-symbols-outlined text-sm">rocket_launch</span>
+              <span>Building Future Unicorn</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm text-primary">location_on</span>
+              <span>Madhya Pradesh, India (IST)</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm text-indigo-600 dark:text-indigo-400">verified</span>
+              <span>50+ Projects Shipped</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm text-sky-600 dark:text-sky-400">bolt</span>
+              <span>Sub-4hr Response Time</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Right: 3D Holographic Core & Presentation Card -->
+        <div class="lg:col-span-5 relative flex flex-col items-center justify-center">
+          
+          <!-- Soft Atmospheric Glow -->
+          <div class="absolute -inset-3 bg-gradient-to-tr from-blue-200/50 via-indigo-100/50 to-sky-200/40 dark:from-blue-600/20 dark:via-indigo-600/10 rounded-3xl blur-2xl opacity-75"></div>
+          
+          <div class="spotlight-card-glow relative w-full max-w-md rounded-3xl bg-white/95 dark:bg-slate-900/95 backdrop-blur-md p-space-md border border-slate-200/80 dark:border-slate-800 shadow-[0_20px_40px_rgba(15,23,42,0.06)] flex flex-col gap-space-md">
+            
+            <!-- Three.js 3D Holographic Kinetic Core -->
+            <div class="relative w-full rounded-2xl overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900 border border-slate-700/60 shadow-inner flex flex-col items-center">
+              <div class="w-full px-3 py-2 bg-slate-900/80 backdrop-blur-sm border-b border-slate-700/50 flex items-center justify-between z-20">
+                <div class="flex items-center gap-1.5">
+                  <span class="h-2 w-2 rounded-full bg-emerald-400 animate-ping"></span>
+                  <span class="font-mono-code text-[10px] font-semibold text-emerald-300 uppercase tracking-wide">Future Unicorn Lab</span>
+                </div>
+                <span class="font-mono-code text-[10px] text-amber-300 font-bold flex items-center gap-1">🦄 Founder @ Age 10</span>
+              </div>
+              
+              <!-- 3D Canvas Container -->
+              <div class="w-full h-64 relative z-10 bg-transparent">
+                <div id="threejs-container-ANIMATION_9" style="width:100%;height:100%"></div>
+                <script>
+                  (function() {
+                    const container = document.getElementById('threejs-container-ANIMATION_9');
+                    const width = container.clientWidth || 400;
+                    const height = container.clientHeight || 256;
+
+                    const scene = new THREE.Scene();
+                    const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
+                    camera.position.z = 7.5;
+
+                    const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+                    renderer.setSize(width, height);
+                    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                    container.appendChild(renderer.domElement);
+
+                    // Lighting
+                    const ambientLight = new THREE.AmbientLight(0xffffff, 0.85);
+                    scene.add(ambientLight);
+
+                    const pointLight1 = new THREE.PointLight(0x3b82f6, 3.5, 25);
+                    pointLight1.position.set(4, 5, 4);
+                    scene.add(pointLight1);
+
+                    const pointLight2 = new THREE.PointLight(0x8b5cf6, 3, 25);
+                    pointLight2.position.set(-4, -4, 3);
+                    scene.add(pointLight2);
+
+                    const mainGroup = new THREE.Group();
+                    scene.add(mainGroup);
+
+                    // Outer Faceted Crystal
+                    const outerGeo = new THREE.IcosahedronGeometry(2.1, 0);
+                    const outerMat = new THREE.MeshPhongMaterial({
+                      color: 0x3b82f6,
+                      emissive: 0x1d4ed8,
+                      specular: 0xffffff,
+                      shininess: 120,
+                      transparent: true,
+                      opacity: 0.78,
+                      flatShading: true
+                    });
+                    const outerMesh = new THREE.Mesh(outerGeo, outerMat);
+                    mainGroup.add(outerMesh);
+
+                    // Wireframe Cage
+                    const wireGeo = new THREE.IcosahedronGeometry(2.3, 1);
+                    const wireMat = new THREE.MeshBasicMaterial({
+                      color: 0x60a5fa,
+                      wireframe: true,
+                      transparent: true,
+                      opacity: 0.45
+                    });
+                    const wireMesh = new THREE.Mesh(wireGeo, wireMat);
+                    mainGroup.add(wireMesh);
+
+                    // Glowing Inner Core
+                    const innerGeo = new THREE.OctahedronGeometry(1.15, 0);
+                    const innerMat = new THREE.MeshStandardMaterial({
+                      color: 0x06b6d4,
+                      roughness: 0.15,
+                      metalness: 0.3
+                    });
+                    const innerMesh = new THREE.Mesh(innerGeo, innerMat);
+                    mainGroup.add(innerMesh);
+
+                    // Rotating Rings
+                    const ringGeo1 = new THREE.TorusGeometry(3.1, 0.04, 16, 100);
+                    const ringMat1 = new THREE.MeshBasicMaterial({ color: 0x8b5cf6, transparent: true, opacity: 0.7 });
+                    const ringMesh1 = new THREE.Mesh(ringGeo1, ringMat1);
+                    ringMesh1.rotation.x = Math.PI / 3;
+                    mainGroup.add(ringMesh1);
+
+                    const ringGeo2 = new THREE.TorusGeometry(3.5, 0.03, 16, 100);
+                    const ringMat2 = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.6 });
+                    const ringMesh2 = new THREE.Mesh(ringGeo2, ringMat2);
+                    ringMesh2.rotation.y = Math.PI / 4;
+                    mainGroup.add(ringMesh2);
+
+                    // Stardust Constellation Particles
+                    const particleCount = 200;
+                    const particleGeo = new THREE.BufferGeometry();
+                    const positions = new Float32Array(particleCount * 3);
+
+                    for (let i = 0; i < particleCount; i++) {
+                      const theta = Math.random() * Math.PI * 2;
+                      const phi = Math.acos((Math.random() * 2) - 1);
+                      const radius = 2.8 + Math.random() * 3.2;
+                      positions[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+                      positions[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+                      positions[i * 3 + 2] = radius * Math.cos(phi);
+                    }
+                    particleGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+                    const particleMat = new THREE.PointsMaterial({
+                      color: 0x60a5fa,
+                      size: 0.14,
+                      transparent: true,
+                      opacity: 0.85,
+                      blending: THREE.AdditiveBlending
+                    });
+                    const particleSystem = new THREE.Points(particleGeo, particleMat);
+                    mainGroup.add(particleSystem);
+
+                    // Drag-to-spin physics
+                    let isDragging = false;
+                    let prevMouseX = 0;
+                    let prevMouseY = 0;
+                    let dragVelX = 0;
+                    let dragVelY = 0;
+
+                    container.addEventListener('mousedown', (e) => {
+                      isDragging = true;
+                      prevMouseX = e.clientX;
+                      prevMouseY = e.clientY;
+                    });
+                    window.addEventListener('mouseup', () => { isDragging = false; });
+                    window.addEventListener('mousemove', (e) => {
+                      if (isDragging) {
+                        const deltaX = e.clientX - prevMouseX;
+                        const deltaY = e.clientY - prevMouseY;
+                        dragVelX = deltaX * 0.01;
+                        dragVelY = deltaY * 0.01;
+                        mainGroup.rotation.y += dragVelX;
+                        mainGroup.rotation.x += dragVelY;
+                        prevMouseX = e.clientX;
+                        prevMouseY = e.clientY;
+                      }
+                    });
+
+                    function onResize() {
+                      const w = container.clientWidth || 400;
+                      const h = container.clientHeight || 256;
+                      camera.aspect = w / h;
+                      camera.updateProjectionMatrix();
+                      renderer.setSize(w, h);
+                    }
+                    window.addEventListener('resize', onResize);
+
+                    let isVisible = true;
+                    let isTabActive = true;
+                    const observer = new IntersectionObserver((entries) => {
+                      isVisible = entries[0].isIntersecting;
+                      if (isVisible && isTabActive) requestAnimationFrame(animate);
+                    }, { threshold: 0.05 });
+                    observer.observe(container);
+
+                    document.addEventListener('visibilitychange', () => {
+                      isTabActive = !document.hidden;
+                      if (isVisible && isTabActive) requestAnimationFrame(animate);
+                    });
+
+                    let clock = new THREE.Clock();
+                    function animate() {
+                      if (!isVisible || !isTabActive) return;
+                      requestAnimationFrame(animate);
+                      const elapsed = clock.getElapsedTime();
+
+                      if (!isDragging) {
+                        dragVelX *= 0.95;
+                        dragVelY *= 0.95;
+                        mainGroup.rotation.y += dragVelX;
+                        mainGroup.rotation.x += dragVelY;
+                      }
+
+                      outerMesh.rotation.x = elapsed * 0.35;
+                      outerMesh.rotation.y = elapsed * 0.45;
+                      wireMesh.rotation.x = -elapsed * 0.2;
+                      wireMesh.rotation.y = -elapsed * 0.3;
+                      innerMesh.rotation.x = elapsed * 0.6;
+                      ringMesh1.rotation.z = elapsed * 0.5;
+                      ringMesh2.rotation.x = elapsed * 0.4;
+                      particleSystem.rotation.y = elapsed * 0.15;
+
+                      mainGroup.position.y = Math.sin(elapsed * 1.6) * 0.22;
+                      renderer.render(scene, camera);
+                    }
+                    animate();
+                  })();
+                </script>
+              </div>
+
+              <div class="w-full px-3 py-1.5 bg-slate-900/90 text-center border-t border-slate-800/80 z-20">
+                <span class="font-mono-code text-[10px] text-slate-400 flex items-center justify-center gap-1">
+                  <span class="material-symbols-outlined text-xs text-primary">touch_app</span> Click &amp; drag 3D core to inspect
+                </span>
+              </div>
+            </div>
+
+            <!-- Key Metrics Grid with Count-Up Animations -->
+            <div class="grid grid-cols-4 gap-2 text-center bg-slate-50/80 dark:bg-slate-800/80 border border-slate-100 dark:border-slate-700 p-space-xs rounded-2xl">
+              <div class="flex flex-col py-1">
+                <span class="text-lg font-bold text-amber-500 dark:text-amber-400">Age 10</span>
+                <span class="font-label-caps text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase">Started Entr.</span>
+              </div>
+              <div class="flex flex-col py-1 border-l border-slate-200/60 dark:border-slate-700">
+                <span class="text-lg font-bold text-primary dark:text-blue-400" data-counter="4" data-suffix="+">4+</span>
+                <span class="font-label-caps text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase">Yrs Design</span>
+              </div>
+              <div class="flex flex-col py-1 border-l border-slate-200/60 dark:border-slate-700">
+                <span class="text-lg font-bold text-sky-600 dark:text-sky-400" data-counter="3" data-suffix="+">3+</span>
+                <span class="font-label-caps text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase">Yrs Code/Edits</span>
+              </div>
+              <div class="flex flex-col py-1 border-l border-slate-200/60 dark:border-slate-700">
+                <span class="text-lg font-bold text-slate-900 dark:text-white" data-counter="50" data-suffix="+">50+</span>
+                <span class="font-label-caps text-[10px] text-slate-500 dark:text-slate-400 font-semibold uppercase">Shipped</span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== KINETIC MARQUEE TICKER ==================== -->
+    <div class="w-full py-4 bg-slate-900 text-white overflow-hidden border-y border-slate-800 relative z-10 shadow-sm">
+      <div class="marquee-container">
+        <div class="marquee-content font-mono-code text-xs font-bold tracking-widest uppercase flex items-center text-slate-300">
+          <span class="flex items-center gap-2 text-amber-300"><span class="h-2 w-2 rounded-full bg-amber-400"></span> 🦄 FUTURE UNICORN FOUNDER</span>
+          <span class="text-slate-600">•</span>
+          <span class="flex items-center gap-2 text-cyan-300"><span class="h-2 w-2 rounded-full bg-cyan-400"></span> 🚀 ENTREPRENEUR SINCE AGE 10</span>
+          <span class="text-slate-600">•</span>
+          <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-blue-500"></span> CREATIVE TECHNOLOGIST</span>
+          <span class="text-slate-600">•</span>
+          <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-indigo-500"></span> DAVINCI RESOLVE COLOR GRADING</span>
+          <span class="text-slate-600">•</span>
+          <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-purple-500"></span> HIGH-RETENTION SOCIAL PACING</span>
+          <span class="text-slate-600">•</span>
+          <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-sky-500"></span> MODERN FULL-STACK TYPESCRIPT</span>
+          <span class="text-slate-600">•</span>
+          <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-emerald-500"></span> VECTOR BRANDING &amp; TYPOGRAPHY</span>
+          <span class="text-slate-600">•</span>
+        </div>
+        <div class="marquee-content font-mono-code text-xs font-bold tracking-widest uppercase flex items-center text-slate-300" aria-hidden="true">
+          <span class="flex items-center gap-2 text-amber-300"><span class="h-2 w-2 rounded-full bg-amber-400"></span> 🦄 FUTURE UNICORN FOUNDER</span>
+          <span class="text-slate-600">•</span>
+          <span class="flex items-center gap-2 text-cyan-300"><span class="h-2 w-2 rounded-full bg-cyan-400"></span> 🚀 ENTREPRENEUR SINCE AGE 10</span>
+          <span class="text-slate-600">•</span>
+          <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-blue-500"></span> CREATIVE TECHNOLOGIST</span>
+          <span class="text-slate-600">•</span>
+          <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-indigo-500"></span> DAVINCI RESOLVE COLOR GRADING</span>
+          <span class="text-slate-600">•</span>
+          <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-purple-500"></span> HIGH-RETENTION SOCIAL PACING</span>
+          <span class="text-slate-600">•</span>
+          <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-sky-500"></span> MODERN FULL-STACK TYPESCRIPT</span>
+          <span class="text-slate-600">•</span>
+          <span class="flex items-center gap-2"><span class="h-2 w-2 rounded-full bg-emerald-500"></span> VECTOR BRANDING &amp; TYPOGRAPHY</span>
+          <span class="text-slate-600">•</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== METRICS & STACK ROW ==================== -->
+    <section class="w-full bg-white/80 dark:bg-slate-900/80 border-b border-slate-200/60 dark:border-slate-800 py-space-xl backdrop-blur-md relative z-10">
+      <div class="max-w-container-max mx-auto px-gutter-mobile lg:px-gutter-desktop flex flex-col gap-space-xl">
+        
+        <!-- Credibility Cards with Tilt & Counters -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-space-md items-center">
+          
+          <div class="tilt-card flex flex-col gap-1 p-space-md rounded-2xl bg-slate-50/80 dark:bg-slate-800/80 border border-slate-200/50 dark:border-slate-700 shadow-sm">
+            <span class="text-2xl lg:text-3xl font-extrabold text-slate-900 dark:text-white" data-counter="4" data-suffix=" Years">4 Years</span>
+            <span class="font-label-caps text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Graphic Design</span>
+          </div>
+
+          <div class="tilt-card flex flex-col gap-1 p-space-md rounded-2xl bg-blue-50/50 dark:bg-blue-950/40 border border-blue-100/60 dark:border-blue-800/60 shadow-sm">
+            <span class="text-2xl lg:text-3xl font-extrabold text-primary dark:text-blue-400" data-counter="3" data-suffix=" Years">3 Years</span>
+            <span class="font-label-caps text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Video Editing</span>
+          </div>
+
+          <div class="tilt-card flex flex-col gap-1 p-space-md rounded-2xl bg-indigo-50/50 dark:bg-indigo-950/40 border border-indigo-100/60 dark:border-indigo-800/60 shadow-sm">
+            <span class="text-2xl lg:text-3xl font-extrabold text-indigo-600 dark:text-indigo-400" data-counter="3" data-suffix=" Years">3 Years</span>
+            <span class="font-label-caps text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Full-Stack Web</span>
+          </div>
+
+          <div class="tilt-card flex flex-col gap-1 p-space-md rounded-2xl bg-sky-50/50 dark:bg-sky-950/40 border border-sky-100/60 dark:border-sky-800/60 shadow-sm">
+            <span class="text-2xl lg:text-3xl font-extrabold text-sky-700 dark:text-sky-300" data-counter="15" data-suffix=" Y/O">15 Y/O</span>
+            <span class="font-label-caps text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Early Technologist</span>
+          </div>
+
+          <div class="tilt-card col-span-2 md:col-span-1 flex flex-col gap-1 p-space-md rounded-2xl bg-slate-50/80 dark:bg-slate-800/80 border border-slate-200/50 dark:border-slate-700 shadow-sm">
+            <span class="text-2xl lg:text-3xl font-extrabold text-emerald-600 dark:text-emerald-400" data-counter="100" data-suffix="%">100%</span>
+            <span class="font-label-caps text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">Client Satisfaction</span>
+          </div>
+
+        </div>
+
+        <!-- Core Toolchain Pills -->
+        <div class="flex flex-col gap-2.5">
+          <span class="font-label-caps text-[11px] font-bold text-slate-500 dark:text-slate-400 uppercase tracking-widest">Mastered Toolchain • Core Stack</span>
+          <div class="flex flex-wrap gap-2 items-center">
+            <span class="px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-mono-code text-xs font-medium flex items-center gap-1.5 border border-slate-200/60 dark:border-slate-700 hover:border-blue-400 hover:scale-105 transition-all"><span class="h-1.5 w-1.5 rounded-full bg-blue-600"></span>Premiere Pro</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-mono-code text-xs font-medium flex items-center gap-1.5 border border-slate-200/60 dark:border-slate-700 hover:border-blue-400 hover:scale-105 transition-all"><span class="h-1.5 w-1.5 rounded-full bg-blue-600"></span>After Effects</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-mono-code text-xs font-medium flex items-center gap-1.5 border border-slate-200/60 dark:border-slate-700 hover:border-blue-400 hover:scale-105 transition-all"><span class="h-1.5 w-1.5 rounded-full bg-blue-600"></span>DaVinci Resolve</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-mono-code text-xs font-medium flex items-center gap-1.5 border border-slate-200/60 dark:border-slate-700 hover:border-indigo-400 hover:scale-105 transition-all"><span class="h-1.5 w-1.5 rounded-full bg-indigo-600"></span>Figma</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-mono-code text-xs font-medium flex items-center gap-1.5 border border-slate-200/60 dark:border-slate-700 hover:border-indigo-400 hover:scale-105 transition-all"><span class="h-1.5 w-1.5 rounded-full bg-indigo-600"></span>Photoshop</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-mono-code text-xs font-medium flex items-center gap-1.5 border border-slate-200/60 dark:border-slate-700 hover:border-indigo-400 hover:scale-105 transition-all"><span class="h-1.5 w-1.5 rounded-full bg-indigo-600"></span>Illustrator</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-mono-code text-xs font-medium flex items-center gap-1.5 border border-slate-200/60 dark:border-slate-700 hover:border-sky-400 hover:scale-105 transition-all"><span class="h-1.5 w-1.5 rounded-full bg-sky-600"></span>React</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-mono-code text-xs font-medium flex items-center gap-1.5 border border-slate-200/60 dark:border-slate-700 hover:border-sky-400 hover:scale-105 transition-all"><span class="h-1.5 w-1.5 rounded-full bg-sky-600"></span>Next.js</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-mono-code text-xs font-medium flex items-center gap-1.5 border border-slate-200/60 dark:border-slate-700 hover:border-sky-400 hover:scale-105 transition-all"><span class="h-1.5 w-1.5 rounded-full bg-sky-600"></span>TypeScript</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-mono-code text-xs font-medium flex items-center gap-1.5 border border-slate-200/60 dark:border-slate-700 hover:border-sky-400 hover:scale-105 transition-all"><span class="h-1.5 w-1.5 rounded-full bg-sky-600"></span>Tailwind CSS</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-mono-code text-xs font-medium flex items-center gap-1.5 border border-slate-200/60 dark:border-slate-700 hover:border-sky-400 hover:scale-105 transition-all"><span class="h-1.5 w-1.5 rounded-full bg-sky-600"></span>Node.js</span>
+            <span class="px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 font-mono-code text-xs font-medium flex items-center gap-1.5 border border-slate-200/60 dark:border-slate-700 hover:border-sky-400 hover:scale-105 transition-all"><span class="h-1.5 w-1.5 rounded-full bg-sky-600"></span>Three.js</span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== ABOUT & JOURNEY ==================== -->
+    <section id="journey" class="w-full max-w-container-max mx-auto px-gutter-mobile lg:px-gutter-desktop py-space-4xl">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl items-start">
+        
+        <!-- Left: Narrative -->
+        <div class="lg:col-span-7 flex flex-col gap-space-md">
+          <span class="font-label-caps text-xs font-bold text-primary dark:text-blue-400 uppercase tracking-widest">Genesis, Entrepreneurship &amp; Vision</span>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
+            "Started entrepreneurship at age 10. Now building a startup destined to become a unicorn."
+          </h2>
+          
+          <div class="flex flex-col gap-space-md text-slate-600 dark:text-slate-300 text-base leading-relaxed">
+            <p>
+              My entrepreneurial journey caught fire at <strong class="text-slate-900 dark:text-white font-semibold">age 10</strong>—fueled by relentless curiosity about how transformative digital products and media ventures are built, engineered, and scaled globally. What began with hands-on digital experiments quickly evolved into creating high-retention video stories, brand systems, and production web software.
+            </p>
+            <p>
+              By age 12, I had mastered node-based DaVinci color grading, kinetic motion graphics, and full-stack TypeScript frameworks. Today, at 15, I combine founder-grade entrepreneurial instincts with tri-discipline technical execution: <strong class="text-indigo-600 dark:text-indigo-400 font-semibold">currently architecting and scaling a breakthrough tech startup destined to achieve unicorn status</strong>, while executing boutique agency-level sprints for founders worldwide at unmatched velocity.
+            </p>
+          </div>
+
+          <!-- Timeline Trace -->
+          <div class="pt-space-md grid grid-cols-1 sm:grid-cols-3 gap-space-sm">
+            <div class="tilt-card p-space-md rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/70 dark:border-slate-700 shadow-sm flex flex-col gap-1.5 hover:border-amber-400 transition-all">
+              <span class="font-mono-code text-[11px] font-bold text-amber-500 dark:text-amber-400 flex items-center gap-1">🚀 2020 • AGE 10</span>
+              <span class="font-bold text-base text-slate-900 dark:text-white">Entrepreneurial Spark</span>
+              <span class="text-xs text-slate-600 dark:text-slate-400 leading-normal">Began entrepreneurship at age 10; tested early digital ventures, designs &amp; code experiments.</span>
+            </div>
+
+            <div class="tilt-card p-space-md rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/70 dark:border-slate-700 shadow-sm flex flex-col gap-1.5 hover:border-indigo-400 transition-all">
+              <span class="font-mono-code text-[11px] font-bold text-indigo-600 dark:text-indigo-400">2022 • AGE 12-13</span>
+              <span class="font-bold text-base text-slate-900 dark:text-white">Tri-Stack Mastery</span>
+              <span class="text-xs text-slate-600 dark:text-slate-400 leading-normal">Mastered DaVinci, After Effects, React, Supabase &amp; node-level video pacing.</span>
+            </div>
+
+            <div class="tilt-card p-space-md rounded-2xl bg-white dark:bg-slate-800 border border-slate-200/70 dark:border-slate-700 shadow-sm flex flex-col gap-1.5 hover:border-blue-400 transition-all">
+              <span class="font-mono-code text-[11px] font-bold text-blue-500 dark:text-blue-400 flex items-center gap-1">🦄 NOW • AGE 15</span>
+              <span class="font-bold text-base text-slate-900 dark:text-white">Future Unicorn Startup</span>
+              <span class="text-xs text-slate-600 dark:text-slate-400 leading-normal">Architecting a high-velocity startup destined for $1B+ unicorn scale while shipping 50+ client projects.</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Dossier Card -->
+        <div class="lg:col-span-5 flex flex-col gap-space-md">
+          <div class="tilt-card rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 p-space-lg flex flex-col gap-space-md shadow-[0_16px_36px_rgba(15,23,42,0.05)] hover:border-blue-300">
+            
+            <div class="flex items-center justify-between pb-space-sm border-b border-slate-100 dark:border-slate-700">
+              <div class="flex items-center gap-1.5">
+                <span class="h-3 w-3 rounded-full bg-red-400"></span>
+                <span class="h-3 w-3 rounded-full bg-amber-400"></span>
+                <span class="h-3 w-3 rounded-full bg-emerald-400"></span>
+                <span class="font-mono-code text-xs text-slate-500 dark:text-slate-400 ml-2 font-medium">shourya_dossier.sys</span>
+              </div>
+              <span class="font-mono-code text-xs font-semibold text-primary dark:text-blue-400 bg-blue-50 dark:bg-blue-950 px-2 py-0.5 rounded-full border border-blue-100 dark:border-blue-800">v4.2.0</span>
+            </div>
+
+            <!-- Meta Attributes -->
+            <div class="flex flex-col gap-2 font-mono-code text-xs">
+              <div class="flex justify-between items-center py-2 px-3 rounded-xl bg-amber-50/70 dark:bg-amber-950/40 border border-amber-200 dark:border-amber-800/60">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">VENTURE_STAGE</span>
+                <span class="text-amber-600 dark:text-amber-400 font-bold flex items-center gap-1">🦄 Future Unicorn Startup</span>
+              </div>
+              <div class="flex justify-between items-center py-2 px-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-700/60">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">ENTREPRENEUR_SINCE</span>
+                <span class="text-slate-900 dark:text-white font-bold">Age 10 (5+ Yrs Journey)</span>
+              </div>
+              <div class="flex justify-between items-center py-2 px-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-700/60">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">CHRONO_AGE</span>
+                <span class="text-slate-900 dark:text-white font-bold">15 Years Old</span>
+              </div>
+              <div class="flex justify-between items-center py-2 px-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-700/60">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">GEOGRAPHY</span>
+                <span class="text-slate-900 dark:text-white font-bold">Madhya Pradesh, India</span>
+              </div>
+              <div class="flex justify-between items-center py-2 px-3 rounded-xl bg-blue-50/60 dark:bg-blue-950/40 border border-blue-100 dark:border-blue-800/60">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">CORE_AXIS</span>
+                <span class="text-primary dark:text-blue-400 font-bold">Founder • Tri-Discipline Tech</span>
+              </div>
+              <div class="flex justify-between items-center py-2 px-3 rounded-xl bg-indigo-50/60 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-800/60">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">AVAILABILITY</span>
+                <span class="text-indigo-700 dark:text-indigo-300 font-bold">Client Sprints • Worldwide</span>
+              </div>
+              <div class="flex justify-between items-center py-2 px-3 rounded-xl bg-slate-50 dark:bg-slate-900/60 border border-slate-100 dark:border-slate-700/60">
+                <span class="text-slate-500 dark:text-slate-400 font-medium">LANGUAGE</span>
+                <span class="text-slate-900 dark:text-white font-bold">English, Hindi</span>
+              </div>
+            </div>
+
+            <!-- SVG Acceleration Graph -->
+            <div class="mt-1 p-space-sm rounded-2xl bg-gradient-to-b from-slate-50 to-white dark:from-slate-900/50 dark:to-slate-800 border border-slate-100 dark:border-slate-700 flex flex-col gap-2">
+              <div class="flex justify-between text-xs font-mono-code text-slate-500 dark:text-slate-400 font-semibold">
+                <span>CUMULATIVE VELOCITY ACCELERATION</span>
+                <span class="text-primary dark:text-blue-400 font-bold">+312% YoY</span>
+              </div>
+              <svg class="w-full h-10 overflow-visible" fill="none" viewBox="0 0 300 40">
+                <path class="text-primary dark:text-blue-400" d="M0 35 Q 40 32, 80 28 T 160 22 T 220 12 T 300 4" stroke="currentColor" stroke-linecap="round" stroke-width="3"></path>
+                <path class="text-blue-100/60 dark:text-blue-950/60" d="M0 35 Q 40 32, 80 28 T 160 22 T 220 12 T 300 4 L 300 40 L 0 40 Z" fill="currentColor"></path>
+                <circle class="fill-primary dark:fill-blue-400 animate-pulse" cx="300" cy="4" r="4.5"></circle>
+              </svg>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== THREE CORE DISCIPLINE SHOWCASES ==================== -->
+    <div class="w-full flex flex-col gap-space-5xl" id="showcases">
+      
+      <!-- ==================== DISCIPLINE 1: VIDEO EDITING ==================== -->
+      <section id="video-section" class="w-full max-w-container-max mx-auto px-gutter-mobile lg:px-gutter-desktop">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md pb-space-2xl border-b border-slate-200/60 dark:border-slate-800">
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-2">
+              <span class="px-3 py-1 rounded-full bg-blue-100/80 dark:bg-blue-950/80 text-primary dark:text-blue-400 font-mono-code text-xs font-bold uppercase">Discipline 01</span>
+              <span class="font-label-caps text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">3 Years Practice</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Video Editing &amp; Motion Direction</h2>
+            <p class="text-slate-600 dark:text-slate-300 text-base max-w-xl">
+              Pacing, Sound Design, Motion Graphics &amp; High-Retention Storytelling engineered for modern social algorithms and high-conversion commercial reels.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-mono-code text-xs text-primary dark:text-blue-400 font-semibold bg-blue-50 dark:bg-blue-950/60 px-3 py-1 rounded-full border border-blue-100 dark:border-blue-800">DaVinci Resolve • Premiere • After Effects</span>
+          </div>
+        </div>
+
+        <!-- Video Projects Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg pt-space-xl">
+          
+          <!-- Video 1: Cinematic Commercial Re-cut -->
+          <div data-open-video="commercial" class="tilt-card rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 overflow-hidden flex flex-col group shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer">
+            <div class="relative aspect-video w-full bg-slate-100 dark:bg-slate-900 overflow-hidden">
+              <img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Cinematic commercial film frame with moody neon blue lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBo8lX3na64MhzMIgoKdKUzLcgOpWrZacWVmywZjw3_RmfuAIvYa-KrSkONMSoaS-cuGm7M1HGJvxUZQC9KqkXGsrwNs1zoDue7Oi-xty7yHcPqXR41QTV4IihB-H5PfNRLrkCji6hSM6J4v18H22WLjrKreTiuXHGmFM3k5p76VBsjwXfONeGuPugmhN2r0GoGZ1z6PCYGj9kA2V9qLMaae_4T4gQH7Z94zNkn_mZ0UebcczJdAX0hTg">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-black/20"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-white/90 dark:bg-slate-900/90 text-primary dark:text-blue-400 font-label-caps text-[10px] font-bold backdrop-blur-md shadow-sm">4K • 60FPS</span>
+              <span class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-slate-900/80 text-white font-mono-code text-[11px] backdrop-blur-md">01:45</span>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="h-12 w-12 rounded-full bg-white text-primary flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Audio Master Equalizer Bar Strip -->
+            <div class="px-space-md py-2.5 bg-slate-50/90 dark:bg-slate-900/90 border-b border-slate-100 dark:border-slate-700/80 flex items-center justify-between">
+              <span class="font-mono-code text-[11px] text-slate-500 dark:text-slate-400 font-semibold">L-R AUDIO MASTER</span>
+              <div class="flex items-center gap-2">
+                <button id="test-audio-beat-btn" class="px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/60 text-primary dark:text-blue-400 font-mono-code text-[10px] font-bold hover:scale-105 transition-transform" title="Play Synthesized Audio Beat">
+                  ▶ Test Beat
+                </button>
+                <div class="flex items-center gap-1 h-3">
+                  <span class="w-1 h-2 bg-primary dark:bg-blue-400 rounded-full animate-pulse"></span>
+                  <span class="w-1 h-3 bg-primary dark:bg-blue-400 rounded-full animate-pulse" style="animation-delay: 150ms;"></span>
+                  <span class="w-1 h-1.5 bg-primary dark:bg-blue-400 rounded-full animate-pulse" style="animation-delay: 300ms;"></span>
+                  <span class="w-1 h-2.5 bg-primary dark:bg-blue-400 rounded-full animate-pulse" style="animation-delay: 100ms;"></span>
+                  <span class="w-1 h-3 bg-indigo-500 rounded-full animate-pulse" style="animation-delay: 250ms;"></span>
+                  <span class="w-1 h-2 bg-primary dark:bg-blue-400 rounded-full animate-pulse"></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="p-space-lg flex flex-col gap-space-sm flex-1 justify-between">
+              <div class="flex flex-col gap-1.5">
+                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Cinematic Commercial Re-cut</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  Full color overhaul in DaVinci Resolve utilizing 3D LUT mapping, custom sound design pass with over 40 bespoke audio Foley layers.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-1.5 pt-space-xs">
+                <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-medium">DaVinci Node Grade</span>
+                <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-medium">Sound FX Foley</span>
+                <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-medium">Premiere Pro</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 2: High-Retention Docu-Edit -->
+          <div data-open-video="docu" class="tilt-card rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 overflow-hidden flex flex-col group shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer">
+            <div class="relative aspect-video w-full bg-slate-100 dark:bg-slate-900 overflow-hidden">
+              <img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="YouTube documentary visual frame with dynamic graphics" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCsBRdVpk1581JqT4o-npa_5zn8PZhr_oFZUBur6lrPUAqYFBoay46QrQWT3n8um9xpATmKXJHye9Das_pQ0Vp6ugUcWfF2pgFMkztFqHF5ftWARkBshkEDcABRMcqeSRlEm7kIVMfwCEpSk52ZAkF8AF6mYC5EDpyG_AOpcz8CLQzqLugo223eLQPrVUQdLzTGrn-EpvpPVloOs8f7WeWLCTNCG0woQX9uqMKwZwcmR_Bh92Rn4Fy7Q">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-black/20"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-sky-500 text-white font-label-caps text-[10px] font-bold backdrop-blur-md shadow-sm">1.2M+ VIEWS</span>
+              <span class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-slate-900/80 text-white font-mono-code text-[11px] backdrop-blur-md">08:24</span>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="h-12 w-12 rounded-full bg-white text-primary flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-space-md py-2.5 bg-slate-50/90 dark:bg-slate-900/90 border-b border-slate-100 dark:border-slate-700/80 flex items-center justify-between">
+              <span class="font-mono-code text-[11px] text-sky-600 dark:text-sky-400 font-semibold">RETENTION: 68% AVG</span>
+              <div class="flex items-center gap-1 h-3">
+                <span class="w-1 h-3 bg-sky-500 rounded-full animate-pulse"></span>
+                <span class="w-1 h-3 bg-sky-500 rounded-full animate-pulse" style="animation-delay: 200ms;"></span>
+                <span class="w-1 h-2 bg-sky-500 rounded-full animate-pulse" style="animation-delay: 100ms;"></span>
+                <span class="w-1 h-3 bg-sky-500 rounded-full animate-pulse" style="animation-delay: 300ms;"></span>
+              </div>
+            </div>
+
+            <div class="p-space-lg flex flex-col gap-space-sm flex-1 justify-between">
+              <div class="flex flex-col gap-1.5">
+                <h3 class="font-bold text-lg text-slate-900 dark:text-white">High-Retention YouTube Docu-Edit</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  High-energy tech documentary pacing featuring custom After Effects kinetic subtitle engines, 3D point tracking, and seamless match cuts.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-1.5 pt-space-xs">
+                <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-medium">Kinetic Typography</span>
+                <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-medium">3D Camera Track</span>
+                <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-medium">Retention Scripting</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 3: SaaS Product 3D Reel -->
+          <div data-open-video="saas" class="tilt-card rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 overflow-hidden flex flex-col group shadow-sm hover:shadow-xl transition-all duration-300 cursor-pointer">
+            <div class="relative aspect-video w-full bg-slate-100 dark:bg-slate-900 overflow-hidden">
+              <img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="3D floating glass software dashboard UI render" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChE9CxNro0zRYM7EM1HWZbV-4S2XXyeFmg4aqbGBiJmXO8E9Xv2RLdT8g5Z3QtfVh5QFdOjc-aMgAtBxIfjCcUVTTU9Kybf8OGAmPF-Fw079yFHOoHp9kyfsBjwYXQhDsxVuSKBhmF5YUxlrs56gYXq6j-QP88Bf9Y9cJwY0S7GwIa06nZmQ8tGqShxWqgSPc4LURly0-5AnFvfiGYq8Z3Y5EP9IHQnvwyk6AcreFY6hSRUtZx8P6JTQ">
+              <div class="absolute inset-0 bg-gradient-to-t from-slate-900/70 via-transparent to-black/20"></div>
+              <span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-indigo-600 text-white font-label-caps text-[10px] font-bold backdrop-blur-md shadow-sm">PRODUCT LAUNCH</span>
+              <span class="absolute bottom-3 right-3 px-2.5 py-1 rounded-full bg-slate-900/80 text-white font-mono-code text-[11px] backdrop-blur-md">00:45</span>
+              <div class="absolute inset-0 flex items-center justify-center">
+                <div class="h-12 w-12 rounded-full bg-white text-primary flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform">
+                  <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="px-space-md py-2.5 bg-slate-50/90 dark:bg-slate-900/90 border-b border-slate-100 dark:border-slate-700/80 flex items-center justify-between">
+              <span class="font-mono-code text-[11px] text-indigo-600 dark:text-indigo-400 font-semibold">BEAT-SYNCED KEYFRAMES</span>
+              <span class="font-mono-code text-[11px] text-slate-500 dark:text-slate-400">128 BPM</span>
+            </div>
+
+            <div class="p-space-lg flex flex-col gap-space-sm flex-1 justify-between">
+              <div class="flex flex-col gap-1.5">
+                <h3 class="font-bold text-lg text-slate-900 dark:text-white">Fast-Paced SaaS Product Reel</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                  High-octane promotional trailer synchronizing 3D glass product mockups with snappy UI zoom bursts, synthesized riser audio and kinetic captions.
+                </p>
+              </div>
+              <div class="flex flex-wrap gap-1.5 pt-space-xs">
+                <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-medium">3D App Rigging</span>
+                <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-medium">Synth SFX</span>
+                <span class="px-3 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-medium">Micro-Cuts</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==================== DISCIPLINE 2: GRAPHIC DESIGN ==================== -->
+      <section id="design-section" class="w-full max-w-container-max mx-auto px-gutter-mobile lg:px-gutter-desktop">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md pb-space-2xl border-b border-slate-200/60 dark:border-slate-800">
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-2">
+              <span class="px-3 py-1 rounded-full bg-indigo-100/80 dark:bg-indigo-950/80 text-indigo-700 dark:text-indigo-400 font-mono-code text-xs font-bold uppercase">Discipline 02</span>
+              <span class="font-label-caps text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">4 Years Practice</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Graphic Design &amp; Visual Systems</h2>
+            <p class="text-slate-600 dark:text-slate-300 text-base max-w-xl">
+              Brand Identity, Typography, Spatial Balance &amp; Scalable Visual Systems crafted with surgical vector precision and bold editorial tension.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-mono-code text-xs text-indigo-700 dark:text-indigo-400 font-semibold bg-indigo-50 dark:bg-indigo-950/60 px-3 py-1 rounded-full border border-indigo-100 dark:border-indigo-800">Photoshop • Illustrator • Figma Systems</span>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-space-lg pt-space-xl">
+          
+          <!-- Graphic 1: Neo-Brutalist Festival (7 cols) -->
+          <div data-open-design data-palette="#2563eb,#4f46e5,#94a3b8,#0f172a" class="tilt-card lg:col-span-7 rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 overflow-hidden flex flex-col shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer">
+            <div class="relative aspect-[16/10] w-full bg-slate-100 dark:bg-slate-900 overflow-hidden">
+              <img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Neo-brutalist tech conference poster campaign" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNOZGxP3wjAIRcr06J8rMY82OIY9n9eIzL9GWS3VrIwY2gQntEgppe7nhwPd8fkY3uezxVUt9Ms_Xl25pqUY-e4fUzCBvMIapeaxIQ3Cy-cwCEKQl5S-SRP-q9WqkuheGQ2FjNECgnG2Go0c95QEo3-wJnplK16jcgmIWewwXjrTVuEeN-7P06ocK6MDM-rl4lL29VWJKQwu-Bks5RT9Tv2PnKiIUK2ll2yj_RTrFNst7s9uOaitPH-A">
+              <div class="absolute top-3 right-3 p-2 rounded-full bg-white/90 dark:bg-slate-900/90 text-primary shadow-sm group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-base">zoom_in</span>
+              </div>
+              <div class="absolute bottom-3 left-3 flex gap-1.5 p-1 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm">
+                <span class="h-3.5 w-3.5 rounded-full bg-blue-600"></span>
+                <span class="h-3.5 w-3.5 rounded-full bg-indigo-600"></span>
+                <span class="h-3.5 w-3.5 rounded-full bg-slate-400"></span>
+                <span class="h-3.5 w-3.5 rounded-full bg-slate-900"></span>
+              </div>
+            </div>
+            <div class="p-space-lg flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <span class="font-label-caps text-xs font-bold text-primary dark:text-blue-400 uppercase">Poster Suite • Type Specimen</span>
+                <span class="font-mono-code text-xs text-slate-500 dark:text-slate-400 font-medium">Click to Inspect</span>
+              </div>
+              <h3 class="font-bold text-xl text-slate-900 dark:text-white">Neo-Brutalist Tech Festival Identity</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Comprehensive identity including custom variable display fonts, grid systems, billboard collaterals, and lanyards for a forward-thinking digital creator summit.
+              </p>
+            </div>
+          </div>
+
+          <!-- Graphic 2: Veloce Energy Drink (5 cols) -->
+          <div data-open-design data-palette="#9333ea,#6366f1,#0f172a,#e2e8f0" class="tilt-card lg:col-span-5 rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 overflow-hidden flex flex-col shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer">
+            <div class="relative aspect-[16/10] w-full bg-slate-100 dark:bg-slate-900 overflow-hidden">
+              <img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Sleek matte black 3D energy drink aluminum can mockup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEpGhmgP7Wx8aBLMxX0muoKlu-6Kzak4gnsvW0o7Uaw3qkXZqFAsKpzW-G3DHGPmbMLqocRTjuSyUw8IB67h8g4z7W4Vb5V66jLfLZnW0aLShnq0H9Uzw6OxDsX8FGgxcOKSU4RblNpz9EncnniuB2EjcnfCsyYYp-C_CmtMm92ABoTQGg_hj1wmeC7g4r2veCycSABjfagA9I_m_UNUenJI4QMEivEJJGQtlJIRKc7FK_eFZoRLOOXw">
+              <div class="absolute top-3 right-3 p-2 rounded-full bg-white/90 dark:bg-slate-900/90 text-indigo-600 shadow-sm group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-base">zoom_in</span>
+              </div>
+              <div class="absolute bottom-3 left-3 flex gap-1.5 p-1 rounded-full bg-white/90 dark:bg-slate-900/90 backdrop-blur-md shadow-sm">
+                <span class="h-3.5 w-3.5 rounded-full bg-purple-600"></span>
+                <span class="h-3.5 w-3.5 rounded-full bg-indigo-500"></span>
+                <span class="h-3.5 w-3.5 rounded-full bg-slate-900"></span>
+              </div>
+            </div>
+            <div class="p-space-lg flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <span class="font-label-caps text-xs font-bold text-indigo-600 dark:text-indigo-400 uppercase">Packaging • 3D Render</span>
+                <span class="font-mono-code text-xs text-slate-500 dark:text-slate-400 font-medium">Click to Inspect</span>
+              </div>
+              <h3 class="font-bold text-xl text-slate-900 dark:text-white">Veloce Beverage System</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Tactile aluminum can layout, UV-gloss spot finishes, and ultra-minimal typography formulated to dominate retail shelf presence.
+              </p>
+            </div>
+          </div>
+
+          <!-- Graphic 3: Minimalist Monogram Art (6 cols) -->
+          <div data-open-design data-palette="#2563eb,#06b6d4,#f8fafc,#0f172a" class="tilt-card lg:col-span-6 rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 overflow-hidden flex flex-col shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer">
+            <div class="relative aspect-[16/9] w-full bg-slate-100 dark:bg-slate-900 overflow-hidden">
+              <img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="Technical vector logo monogram breakdown" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFzU8NxQmfzxuSJjbKs7sT3GIPTV8v-AS4UTj-uHLOroBitLHJslBCl1H56_9KBD3K3upzJR9jMqIJUtgPHyfRwrhnvLqlXCQrp3XJYRRkglQOUMUMkFjzsGLQ2xYdzvwbIJL-JPhK5NaB3duAFQRsCgy_d1D5Yp2Xdz9upP_PN81IshaoOF0kuQASmVAqmZsRZh5REmlID6GUX44FgrTidxSyhuy6fzxduxAIFoVPXnVfxalW4g61yA">
+              <div class="absolute top-3 right-3 p-2 rounded-full bg-white/90 dark:bg-slate-900/90 text-primary shadow-sm group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-base">zoom_in</span>
+              </div>
+            </div>
+            <div class="p-space-lg flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <span class="font-label-caps text-xs font-bold text-primary dark:text-blue-400 uppercase">Vector Architecture</span>
+                <span class="font-mono-code text-xs text-slate-500 dark:text-slate-400 font-medium">Click to Inspect</span>
+              </div>
+              <h3 class="font-bold text-xl text-slate-900 dark:text-white">Minimalist Monogram &amp; Vector System</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Mathematical bezier curvature grids applied to craft timeless luxury brand marks that scale from 16px favicons to building facades.
+              </p>
+            </div>
+          </div>
+
+          <!-- Graphic 4: Omnichannel Social Kit (6 cols) -->
+          <div data-open-design data-palette="#3b82f6,#8b5cf6,#10b981,#1e293b" class="tilt-card lg:col-span-6 rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 overflow-hidden flex flex-col shadow-sm hover:shadow-xl transition-all duration-300 group cursor-pointer">
+            <div class="relative aspect-[16/9] w-full bg-slate-100 dark:bg-slate-900 overflow-hidden">
+              <img loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="High converting modern social media carousel slides" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDXPGn4I6Pxp4-Qptmq_WRzri8pJ105R0wpjOHTVAopOhXcxnXg_vQCbTolwJ491gwz5fkbkbtLL3HR5yOH-N8-A-Bpgcmd2dw8BSBQrb5_TtKZ_1Y-WqIOlyL7deKOAebGNCGVL_6gGIyw6EV4PwuEawnZ43AE0koBogk2ssDps4WNlNfs609pahE8kOTuks_zkhC3_vXe8pF5pgtEFons4H5S0EjO-2CapbJjgaQ_kIw7lq81eFrpCQ">
+              <div class="absolute top-3 right-3 p-2 rounded-full bg-white/90 dark:bg-slate-900/90 text-blue-600 shadow-sm group-hover:scale-110 transition-transform">
+                <span class="material-symbols-outlined text-base">zoom_in</span>
+              </div>
+            </div>
+            <div class="p-space-lg flex flex-col gap-2">
+              <div class="flex items-center justify-between">
+                <span class="font-label-caps text-xs font-bold text-blue-600 dark:text-blue-400 uppercase">Omnichannel Conversion Kit</span>
+                <span class="font-mono-code text-xs text-slate-500 dark:text-slate-400 font-medium">Click to Inspect</span>
+              </div>
+              <h3 class="font-bold text-xl text-slate-900 dark:text-white">Social Growth Omnichannel Suite</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Reusable design tokens and carousel templates designed to maximize engagement metrics, save hours in editorial prep, and retain visual consistency.
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- ==================== DISCIPLINE 3: WEB DEVELOPMENT ==================== -->
+      <section id="dev-section" class="w-full max-w-container-max mx-auto px-gutter-mobile lg:px-gutter-desktop">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-space-md pb-space-2xl border-b border-slate-200/60 dark:border-slate-800">
+          <div class="flex flex-col gap-2">
+            <div class="flex items-center gap-2">
+              <span class="px-3 py-1 rounded-full bg-sky-100 dark:bg-sky-950/80 text-sky-700 dark:text-sky-400 font-mono-code text-xs font-bold uppercase">Discipline 03</span>
+              <span class="font-label-caps text-xs text-slate-500 dark:text-slate-400 uppercase tracking-wider font-semibold">3 Years Practice</span>
+            </div>
+            <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Web Architecture &amp; Engineering</h2>
+            <p class="text-slate-600 dark:text-slate-300 text-base max-w-xl">
+              Pixel-Perfect Interfaces, Smooth Micro-Interactions &amp; Modern Web Architecture built with scalable component design and blazingly fast runtimes.
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-mono-code text-xs text-sky-700 dark:text-sky-400 font-semibold bg-sky-50 dark:bg-sky-950/60 px-3 py-1 rounded-full border border-sky-100 dark:border-sky-800">Next.js • Tailwind • Supabase • Three.js</span>
+          </div>
+        </div>
+
+        <!-- Bento Dev Interactive Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-space-lg pt-space-xl">
+          
+          <!-- Web 1: Apex Flow Platform (Interactive Real-Time Telemetry Dashboard) -->
+          <div class="tilt-card rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 p-space-lg flex flex-col justify-between gap-space-md shadow-sm hover:shadow-xl transition-all duration-300 group">
+            <div class="flex flex-col gap-space-sm">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-950/60 text-primary dark:text-blue-400 border border-blue-100 dark:border-blue-800 font-mono-code text-xs font-bold">Next.js 14 • App Router</span>
+                <span class="flex items-center gap-1.5 font-mono-code text-xs text-emerald-700 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-100 dark:border-emerald-800">
+                  <span class="h-2 w-2 rounded-full bg-emerald-500 animate-ping"></span> Live Telemetry
+                </span>
+              </div>
+              <h3 class="font-bold text-xl text-slate-900 dark:text-white">Apex Flow — Cloud Analytics</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Interactive real-time telemetry dashboard featuring interactive canvas graphs, modern design tokens, and Sub-100ms API responses.
+              </p>
+
+              <!-- Real-Time Interactive Telemetry Simulator Widget -->
+              <div class="relative w-full aspect-video rounded-2xl bg-slate-50 dark:bg-slate-900/90 border border-slate-200/60 dark:border-slate-700 overflow-hidden p-3 flex flex-col gap-2 shadow-inner">
+                <div class="flex items-center justify-between pb-1.5 border-b border-slate-200/60 dark:border-slate-800">
+                  <span class="font-mono-code text-[11px] text-slate-500 dark:text-slate-400">latency: <strong id="apex-latency-display" class="text-primary dark:text-blue-400">28.4 ms</strong></span>
+                  <div class="flex items-center gap-1">
+                    <button class="apex-time-filter px-1.5 py-0.5 rounded text-[10px] font-mono-code font-bold bg-primary text-white" data-timeframe="1h">1H</button>
+                    <button class="apex-time-filter px-1.5 py-0.5 rounded text-[10px] font-mono-code font-semibold text-slate-500 hover:text-slate-900 dark:hover:text-white" data-timeframe="24h">24H</button>
+                    <button class="apex-time-filter px-1.5 py-0.5 rounded text-[10px] font-mono-code font-semibold text-slate-500 hover:text-slate-900 dark:hover:text-white" data-timeframe="7d">7D</button>
+                  </div>
+                </div>
+
+                <!-- Live Animated Streaming Bars -->
+                <div id="apex-telemetry-bars" class="flex-1 flex items-end justify-between px-1 pt-2 gap-1.5 h-24">
+                  <!-- Injected via JavaScript dynamically -->
+                </div>
+
+                <div class="flex justify-between items-center text-[10px] font-mono-code text-slate-400 pt-1 border-t border-slate-200/40 dark:border-slate-800">
+                  <span>THROUGHPUT: <strong id="apex-rps-display" class="text-slate-700 dark:text-slate-300">1,540 req/s</strong></span>
+                  <span class="text-emerald-500 font-bold">HEALTHY 99.99%</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-space-xs">
+              <div class="flex gap-1.5">
+                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-medium">TypeScript</span>
+                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-medium">Tailwind</span>
+              </div>
+              <a class="p-2 rounded-full bg-slate-100 dark:bg-slate-700 hover:bg-primary hover:text-white text-slate-700 dark:text-slate-300 transition-all hover:scale-110 flex items-center justify-center shadow-sm" href="hire.html" title="Commission Project">
+                <span class="material-symbols-outlined text-base">arrow_outward</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Web 2: Studio Kroma Creative Agency (Interactive WebGL Refraction Canvas) -->
+          <div class="tilt-card rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 p-space-lg flex flex-col justify-between gap-space-md shadow-sm hover:shadow-xl transition-all duration-300 group">
+            <div class="flex flex-col gap-space-sm">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-1 rounded-full bg-sky-50 dark:bg-sky-950/60 text-sky-700 dark:text-sky-400 border border-sky-100 dark:border-sky-800 font-mono-code text-xs font-bold">Three.js • WebGL</span>
+                <span class="flex items-center gap-1.5 font-mono-code text-xs text-emerald-700 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-100 dark:border-emerald-800">
+                  <span class="h-2 w-2 rounded-full bg-emerald-500 animate-ping"></span> Live App
+                </span>
+              </div>
+              <h3 class="font-bold text-xl text-slate-900 dark:text-white">Studio Kroma — Agency Site</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Fluid agency showcase utilizing custom GLSL chromatic shaders, mouse-driven refraction physics, and seamless page routing transitions.
+              </p>
+
+              <!-- Interactive Liquid Metallic Refraction Container -->
+              <div class="relative w-full aspect-video rounded-2xl bg-gradient-to-tr from-sky-50 to-indigo-50 dark:from-slate-900 dark:to-indigo-950 border border-slate-200/60 dark:border-slate-700 overflow-hidden flex items-center justify-center shadow-inner group/kroma">
+                <div class="w-28 h-28 rounded-full bg-gradient-to-tr from-indigo-400 via-sky-400 to-blue-500 blur-lg group-hover/kroma:scale-125 transition-transform duration-700 animate-pulse"></div>
+                <div class="absolute inset-0 flex flex-col items-center justify-center p-3 text-center">
+                  <span class="font-mono-code text-xs font-bold text-slate-900 dark:text-white bg-white/90 dark:bg-slate-900/90 border border-white dark:border-slate-700 px-3 py-1 rounded-full shadow-sm">WebGL Kinetic Fluid Mesh</span>
+                  <span class="font-mono-code text-[10px] text-slate-500 dark:text-slate-400 mt-1">Refraction Pass: 120 FPS</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-space-xs">
+              <div class="flex gap-1.5">
+                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-medium">GLSL</span>
+                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-medium">Three.js</span>
+              </div>
+              <a class="p-2 rounded-full bg-slate-100 dark:bg-slate-700 hover:bg-sky-600 hover:text-white text-slate-700 dark:text-slate-300 transition-all hover:scale-110 flex items-center justify-center shadow-sm" href="hire.html" title="Commission Project">
+                <span class="material-symbols-outlined text-base">arrow_outward</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Web 3: Pulse AI Workflow Tool (Live Functional Prompt Playground) -->
+          <div class="tilt-card rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 p-space-lg flex flex-col justify-between gap-space-md shadow-sm hover:shadow-xl transition-all duration-300 group">
+            <div class="flex flex-col gap-space-sm">
+              <div class="flex items-center justify-between">
+                <span class="px-2.5 py-1 rounded-full bg-indigo-50 dark:bg-indigo-950/60 text-indigo-700 dark:text-indigo-400 border border-indigo-100 dark:border-indigo-800 font-mono-code text-xs font-bold">React • Supabase</span>
+                <span class="flex items-center gap-1.5 font-mono-code text-xs text-emerald-700 dark:text-emerald-400 font-semibold bg-emerald-50 dark:bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-100 dark:border-emerald-800">
+                  <span class="h-2 w-2 rounded-full bg-emerald-500 animate-ping"></span> Live App
+                </span>
+              </div>
+              <h3 class="font-bold text-xl text-slate-900 dark:text-white">Pulse AI — Prompt Engine</h3>
+              <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+                Full-featured AI prompt generator with real-time vector embeddings, key-value parameter sliders, and cloud synchronizations.
+              </p>
+
+              <!-- Live Interactive Prompt Tester Widget -->
+              <div class="relative w-full rounded-2xl bg-slate-900 text-slate-200 overflow-hidden p-3 font-mono-code text-xs flex flex-col gap-2 shadow-inner border border-slate-700">
+                <div class="flex items-center justify-between pb-1.5 border-b border-slate-800">
+                  <span class="text-indigo-400 font-semibold flex items-center gap-1">
+                    <span class="h-1.5 w-1.5 rounded-full bg-indigo-400 animate-ping"></span> Interactive Prompt Runner
+                  </span>
+                  <button id="pulse-copy-btn" class="text-slate-400 hover:text-white transition-colors" title="Copy Output">
+                    <span class="material-symbols-outlined text-sm">content_copy</span>
+                  </button>
+                </div>
+
+                <!-- Sample preset chips -->
+                <div class="flex gap-1 overflow-x-auto pb-1">
+                  <button class="pulse-sample-prompt px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-[10px] text-slate-300 font-mono-code whitespace-nowrap" data-prompt-text="Generate viral YouTube hook script">Viral Hook</button>
+                  <button class="pulse-sample-prompt px-2 py-0.5 rounded bg-slate-800 hover:bg-slate-700 text-[10px] text-slate-300 font-mono-code whitespace-nowrap" data-prompt-text="Create luxury brand design tokens">Brand Tokens</button>
+                </div>
+
+                <div class="flex gap-1.5 items-center">
+                  <input id="pulse-prompt-input" type="text" class="w-full px-2.5 py-1.5 rounded-lg bg-slate-800 border border-slate-700 text-xs text-white placeholder:text-slate-500 focus:outline-none focus:border-indigo-500" value="Generate viral YouTube hook script">
+                  <button id="pulse-run-btn" class="px-2.5 py-1.5 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs shrink-0 flex items-center gap-1 transition-all">
+                    <span class="material-symbols-outlined text-sm">play_arrow</span> Run
+                  </button>
+                </div>
+
+                <!-- Output Display Stream -->
+                <div class="min-h-[64px] max-h-[85px] overflow-y-auto p-2 rounded-lg bg-slate-950/80 border border-slate-800/80 text-[11px] leading-relaxed text-indigo-200">
+                  <pre id="pulse-output-stream" class="whitespace-pre-wrap font-mono-code">// Output stream ready. Click 'Run' to generate...</pre>
+                </div>
+
+                <div class="flex justify-between items-center text-[10px] text-slate-400 pt-1 border-t border-slate-800">
+                  <span>SPEED: <strong id="pulse-speed-metric" class="text-emerald-400 font-semibold">92.4 tok/s</strong></span>
+                  <span>TTFT: <strong id="pulse-ttft-metric" class="text-sky-400 font-semibold">14.2 ms</strong></span>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-space-xs">
+              <div class="flex gap-1.5">
+                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-medium">Supabase</span>
+                <span class="px-2.5 py-1 rounded-full bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-medium">API Routes</span>
+              </div>
+              <a class="p-2 rounded-full bg-slate-100 dark:bg-slate-700 hover:bg-indigo-600 hover:text-white text-slate-700 dark:text-slate-300 transition-all hover:scale-110 flex items-center justify-center shadow-sm" href="hire.html" title="Commission Project">
+                <span class="material-symbols-outlined text-base">arrow_outward</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ==================== CLIENT TESTIMONIALS ==================== -->
+    <section class="w-full max-w-container-max mx-auto px-gutter-mobile lg:px-gutter-desktop py-space-4xl">
+      <div class="flex flex-col items-center text-center gap-2 pb-space-2xl">
+        <span class="font-label-caps text-xs font-bold text-primary dark:text-blue-400 uppercase tracking-widest">Feedback &amp; Testimonials</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Trusted by founders, YouTubers &amp; agencies</h2>
+        <p class="text-base text-slate-600 dark:text-slate-300 max-w-xl">
+          Age is just a number. The proof lives in velocity, polish, and zero-compromise client delivery.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-space-lg">
+        
+        <!-- Testimonial 1 -->
+        <div class="tilt-card p-space-lg rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between gap-space-md shadow-sm transition-transform">
+          <div class="flex flex-col gap-space-sm">
+            <div class="flex text-amber-400 gap-0.5">
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+            </div>
+            <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
+              "Working with Shourya was surreal. His DaVinci color grades and sound pacing rival senior video editors with decades of tenure. He cut our product launch film in 48 hours."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-3 border-t border-slate-100 dark:border-slate-700">
+            <div class="h-10 w-10 rounded-full bg-blue-100 dark:bg-blue-900 text-primary dark:text-blue-300 flex items-center justify-center font-bold text-sm">
+              M
+            </div>
+            <div class="flex flex-col">
+              <span class="font-bold text-sm text-slate-900 dark:text-white">Marcus Vance</span>
+              <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Creative Director • Studio Neo</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="tilt-card p-space-lg rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between gap-space-md shadow-sm transition-transform">
+          <div class="flex flex-col gap-space-sm">
+            <div class="flex text-amber-400 gap-0.5">
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+            </div>
+            <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
+              "Shourya built the entire front-end of our SaaS analytics suite in Next.js and Tailwind. Clean code architecture, zero unnecessary dependencies, and insanely responsive UI."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-3 border-t border-slate-100 dark:border-slate-700">
+            <div class="h-10 w-10 rounded-full bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 flex items-center justify-center font-bold text-sm">
+              A
+            </div>
+            <div class="flex flex-col">
+              <span class="font-bold text-sm text-slate-900 dark:text-white">Aarav Patel</span>
+              <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">CTO • CloudTelemetry</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="tilt-card p-space-lg rounded-3xl bg-white dark:bg-slate-800 border border-slate-200/80 dark:border-slate-700 flex flex-col justify-between gap-space-md shadow-sm transition-transform">
+          <div class="flex flex-col gap-space-sm">
+            <div class="flex text-amber-400 gap-0.5">
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+              <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">star</span>
+            </div>
+            <p class="text-sm text-slate-700 dark:text-slate-300 leading-relaxed font-normal">
+              "Our YouTube retention skyrocketed by 28% the very first month Shourya took over storytelling edits. He understands audience psychology instinctively."
+            </p>
+          </div>
+          <div class="flex items-center gap-3 pt-3 border-t border-slate-100 dark:border-slate-700">
+            <div class="h-10 w-10 rounded-full bg-sky-100 dark:bg-sky-900 text-sky-700 dark:text-sky-300 flex items-center justify-center font-bold text-sm">
+              E
+            </div>
+            <div class="flex flex-col">
+              <span class="font-bold text-sm text-slate-900 dark:text-white">Elena Rostova</span>
+              <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Tech Creator • 850k Subscribers</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ==================== HIRE / COMMISSION CALL TO ACTION ==================== -->
+    <section class="w-full max-w-container-max mx-auto px-gutter-mobile lg:px-gutter-desktop pb-space-5xl" id="hire-cta">
+      <div class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-600 via-indigo-600 to-slate-900 p-space-lg lg:p-space-2xl text-white shadow-2xl border border-blue-400/30">
+        <!-- Ambient decorative glows -->
+        <div class="absolute -top-24 -right-24 w-96 h-96 bg-cyan-400/20 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-3xl flex flex-col gap-space-md">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-blue-200 text-xs font-bold uppercase tracking-wider self-start">
+            <span class="h-2 w-2 rounded-full bg-cyan-300 animate-ping"></span>
+            <span>Direct Client Onboarding • Q3/Q4 Availability</span>
+          </div>
+
+          <h2 class="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
+            Ready to build something <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-300 via-blue-200 to-indigo-200">unforgettable?</span>
+          </h2>
+
+          <p class="text-slate-200 text-base sm:text-lg leading-relaxed max-w-2xl">
+            Choose a turnkey production sprint or configure a custom milestone-protected scope across high-retention video editing, visual brand systems, and modern web architecture. Zero agency bloat.
+          </p>
+
+          <!-- Action Buttons -->
+          <div class="flex flex-wrap items-center gap-space-sm pt-space-xs">
+            <a href="hire.html" class="btn-glow-shimmer px-space-xl py-4 rounded-full bg-white text-primary hover:bg-blue-50 font-bold text-sm shadow-[0_10px_30px_rgba(0,0,0,0.25)] hover:scale-105 transition-all flex items-center gap-2 group">
+              <span>Configure Commission &amp; Scope</span>
+              <span class="material-symbols-outlined text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
+            </a>
+            <a href="mailto:shouryarana011@gmail.com" class="px-space-lg py-4 rounded-full bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/25 font-mono-code text-xs font-semibold transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-base">mail</span>
+              <span>shouryarana011@gmail.com</span>
+            </a>
+          </div>
+
+          <!-- Trust Badges -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-space-md border-t border-white/15 text-xs text-blue-100 font-mono-code">
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-cyan-300 text-base">bolt</span>
+              <span>&lt; 4h Turnaround</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-emerald-300 text-base">lock</span>
+              <span>Escrow Protected</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-purple-300 text-base">verified</span>
+              <span>100% IP Handover</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-blue-300 text-base">person</span>
+              <span>Direct Founder Sync</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="w-full bg-white dark:bg-slate-900 border-t border-slate-200/70 dark:border-slate-800 py-space-2xl transition-colors duration-300">
+    <div class="max-w-container-max mx-auto px-gutter-mobile lg:px-gutter-desktop flex flex-col md:flex-row items-center justify-between gap-space-lg">
+      <div class="flex flex-col items-center md:items-start text-center md:text-left gap-1">
+        <p class="text-sm font-semibold text-slate-800 dark:text-slate-200">Designed &amp; Engineered with craft by Shourya Rana • Madhya Pradesh, India</p>
+        <p class="text-xs text-slate-500 dark:text-slate-400">© 2024 Shourya Rana. All rights reserved.</p>
+      </div>
+
+      <div class="flex flex-wrap items-center justify-center gap-4 text-xs font-semibold text-slate-600 dark:text-slate-400">
+        <a class="hover:text-primary dark:hover:text-blue-400 transition-colors" href="https://github.com" target="_blank" rel="noopener">GitHub</a>
+        <a class="hover:text-primary dark:hover:text-blue-400 transition-colors" href="https://behance.net" target="_blank" rel="noopener">Behance</a>
+        <a class="hover:text-primary dark:hover:text-blue-400 transition-colors" href="https://youtube.com" target="_blank" rel="noopener">YouTube</a>
+        <a class="hover:text-primary dark:hover:text-blue-400 transition-colors" href="https://twitter.com" target="_blank" rel="noopener">X / Twitter</a>
+        <a class="hover:text-primary dark:hover:text-blue-400 transition-colors" href="https://linkedin.com" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="hover:text-primary dark:hover:text-blue-400 transition-colors" href="https://instagram.com" target="_blank" rel="noopener">Instagram</a>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <button id="view-inquiries-btn" class="px-3.5 py-1.5 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-[11px] font-semibold flex items-center gap-1.5 transition-all shadow-sm hover:scale-105" title="View Submissions Log">
+          <span class="material-symbols-outlined text-sm text-primary">inbox</span>
+          <span>Inquiry Log (<span id="inquiry-count-badge">0</span>)</span>
+        </button>
+
+        <a class="p-2.5 rounded-full bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-600 dark:text-slate-300 transition-all flex items-center justify-center shadow-sm hover:scale-110" href="#top" title="Back to top">
+          <span class="material-symbols-outlined text-base">arrow_upward</span>
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== CINEMATIC VIDEO PLAYER MODAL ==================== -->
+  <div id="video-player-modal" class="modal-backdrop">
+    <div class="modal-content overflow-hidden p-0 max-w-4xl flex flex-col">
+      <!-- Modal Header -->
+      <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-white dark:bg-slate-900">
+        <div class="flex flex-col">
+          <span id="video-modal-category" class="font-label-caps text-xs text-primary dark:text-blue-400 font-bold uppercase">Video Showcase</span>
+          <h3 id="video-modal-title" class="font-bold text-lg sm:text-xl text-slate-900 dark:text-white">Project Title</h3>
+        </div>
+        <button id="video-modal-close-btn" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+          <span class="material-symbols-outlined text-xl">close</span>
+        </button>
+      </div>
+
+      <!-- Live Video Simulation Canvas -->
+      <div class="relative w-full aspect-video bg-black flex items-center justify-center overflow-hidden">
+        <canvas id="video-sim-canvas" width="854" height="480" class="w-full h-full object-contain"></canvas>
+        <span id="video-modal-res" class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/70 text-white font-mono-code text-[11px] backdrop-blur-md">4K DCI • 60 FPS</span>
+      </div>
+
+      <!-- Real-Time Audio Frequency Visualizer Spectrum -->
+      <div class="w-full h-10 bg-slate-950 px-4 flex items-center">
+        <canvas id="video-modal-spectrum" width="800" height="35" class="w-full h-full"></canvas>
+      </div>
+
+      <!-- Video Controls Bar -->
+      <div class="p-4 bg-slate-900 text-white flex flex-col gap-2.5">
+        <div class="flex items-center gap-3">
+          <button id="video-modal-play-btn" class="p-2 rounded-full bg-primary hover:bg-blue-600 text-white flex items-center justify-center transition-transform hover:scale-105">
+            <span class="material-symbols-outlined text-xl">pause</span>
+          </button>
+          <span id="video-modal-time" class="font-mono-code text-xs text-slate-300">00:00 / 01:45</span>
+          <input id="video-modal-timeline" type="range" min="0" max="100" value="0" class="flex-1 accent-primary h-1 bg-slate-700 rounded-lg cursor-pointer">
+          <div class="flex items-center gap-1 font-mono-code text-xs">
+            <button class="video-speed-btn px-2 py-0.5 rounded text-[11px] text-slate-400 hover:text-white" data-speed="0.5">0.5x</button>
+            <button class="video-speed-btn px-2 py-0.5 rounded text-[11px] bg-primary text-white font-bold" data-speed="1">1x</button>
+            <button class="video-speed-btn px-2 py-0.5 rounded text-[11px] text-slate-400 hover:text-white" data-speed="1.5">1.5x</button>
+            <button class="video-speed-btn px-2 py-0.5 rounded text-[11px] text-slate-400 hover:text-white" data-speed="2">2x</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Description & Metadata -->
+      <div class="p-6 bg-white dark:bg-slate-900 flex flex-col gap-3">
+        <p id="video-modal-desc" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed"></p>
+        <div id="video-modal-tags" class="flex flex-wrap gap-2 pt-1"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== GRAPHIC DESIGN INSPECTION LIGHTBOX ==================== -->
+  <div id="design-lightbox-modal" class="modal-backdrop">
+    <div class="modal-content overflow-hidden p-0 max-w-4xl flex flex-col">
+      <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-white dark:bg-slate-900">
+        <div class="flex flex-col">
+          <span id="design-modal-category" class="font-label-caps text-xs text-primary dark:text-blue-400 font-bold uppercase">Brand System</span>
+          <h3 id="design-modal-title" class="font-bold text-lg sm:text-xl text-slate-900 dark:text-white">Design Project</h3>
+        </div>
+        <div class="flex items-center gap-2">
+          <button id="design-grid-toggle-btn" class="px-3 py-1.5 rounded-full border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-semibold flex items-center gap-1.5 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+            <span class="material-symbols-outlined text-sm">grid_4x4</span>
+            <span>Vector Grid</span>
+          </button>
+          <button id="design-modal-close-btn" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+            <span class="material-symbols-outlined text-xl">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Preview with Vector Grid Overlay -->
+      <div class="relative w-full aspect-[16/10] bg-slate-950 flex items-center justify-center overflow-hidden">
+        <img id="design-modal-img" src="" alt="" class="w-full h-full object-contain">
+        <div id="design-modal-grid" class="absolute inset-0 vector-construction-grid hidden"></div>
+      </div>
+
+      <!-- Color Swatches & Copy Tool -->
+      <div class="p-6 bg-white dark:bg-slate-900 flex flex-col gap-4">
+        <div class="flex flex-col gap-1.5">
+          <span class="font-label-caps text-xs text-slate-500 dark:text-slate-400 font-bold uppercase">Brand Color Tokens (Click to Copy HEX)</span>
+          <div id="design-modal-palette" class="flex flex-wrap gap-2"></div>
+        </div>
+        <p id="design-modal-desc" class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== DIGITAL RESUME SLIDE-OVER DRAWER ==================== -->
+  <div id="resume-drawer-backdrop" class="drawer-backdrop">
+    <div class="drawer-panel p-space-lg lg:p-space-xl overflow-y-auto">
+      
+      <!-- Drawer Header -->
+      <div class="flex items-center justify-between pb-space-md border-b border-slate-200 dark:border-slate-700">
+        <div class="flex items-center gap-3">
+          <img alt="Shourya" class="w-12 h-12 rounded-2xl object-cover ring-2 ring-primary" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxNE9Ny2rbWbVu5d6xf9IGwN7Rx5xWocD9UwXCo4KqFY1mWMFb04cFiCWr7-Bfm_Wdcslkol9oEQonRgpM7Yfld1X0VPKQyul0WwiRZTWQWvqCSCCYTG1fncGAhDXWLdW54WVeQi6vqg_vuWQbrBoTaHg318JgQ9x1-oJGtTji1v8jlSb8zGgOlFibTObFhc7UBrxtvCuXF7xoTZ4jibjMBz-5Ro6Fo5aIF3pbelg2Mk7Lz-v3c5QdfnZurrGJ1jfdOMk">
+          <div class="flex flex-col">
+            <h3 class="font-bold text-xl text-slate-900 dark:text-white">Shourya Rana</h3>
+            <span class="font-mono-code text-xs text-primary dark:text-blue-400 font-semibold">Founder, Entrepreneur &amp; Technologist</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-1">
+          <button id="resume-print-btn" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300" title="Print / Save PDF">
+            <span class="material-symbols-outlined text-lg">print</span>
+          </button>
+          <button id="resume-drawer-close" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">
+            <span class="material-symbols-outlined text-xl">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Full Resume Content -->
+      <div class="flex flex-col gap-6 pt-6 text-slate-700 dark:text-slate-300 text-sm">
+        
+        <!-- Summary -->
+        <div class="flex flex-col gap-2">
+          <span class="font-label-caps text-xs font-bold text-primary dark:text-blue-400 uppercase tracking-wider">Executive Summary</span>
+          <p class="text-sm leading-relaxed">
+            15-year-old founder, entrepreneur, and multidisciplinary software engineer from Madhya Pradesh, India. Began entrepreneurial ventures at <strong class="text-slate-900 dark:text-white">age 10</strong> with a relentless drive to build transformative companies. Currently architecting and scaling a <strong class="text-indigo-600 dark:text-indigo-400">high-growth tech startup destined for unicorn valuation ($1B+)</strong>, while shipping high-retention video stories, brand systems, and full-stack web platforms for worldwide clients.
+          </p>
+        </div>
+
+        <!-- Technical Proficiency Bars -->
+        <div class="flex flex-col gap-3">
+          <span class="font-label-caps text-xs font-bold text-primary dark:text-blue-400 uppercase tracking-wider">Skill Mastery</span>
+          
+          <div class="flex flex-col gap-1">
+            <div class="flex justify-between text-xs font-mono-code font-bold">
+              <span>Graphic Design &amp; Brand Systems (Photoshop, Figma, Illustrator)</span>
+              <span class="text-primary dark:text-blue-400">98%</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+              <div class="h-full bg-primary rounded-full w-[98%]"></div>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <div class="flex justify-between text-xs font-mono-code font-bold">
+              <span>Video Editing &amp; Color Grading (DaVinci, Premiere, After Effects)</span>
+              <span class="text-indigo-600 dark:text-indigo-400">96%</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+              <div class="h-full bg-indigo-600 rounded-full w-[96%]"></div>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <div class="flex justify-between text-xs font-mono-code font-bold">
+              <span>Full-Stack Web Engineering (React, Next.js, TypeScript, Tailwind)</span>
+              <span class="text-sky-600 dark:text-sky-400">92%</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-slate-100 dark:bg-slate-800 overflow-hidden">
+              <div class="h-full bg-sky-600 rounded-full w-[92%]"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Experience Milestones -->
+        <div class="flex flex-col gap-3">
+          <span class="font-label-caps text-xs font-bold text-primary dark:text-blue-400 uppercase tracking-wider">Career &amp; Venture Milestones</span>
+          
+          <div class="p-3.5 rounded-2xl bg-gradient-to-r from-amber-50 to-blue-50 dark:from-amber-950/40 dark:to-blue-950/40 border border-amber-200/80 dark:border-amber-800/60 flex flex-col gap-1 shadow-xs">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
+                <span>🦄 Startup Founder &amp; Architect</span>
+                <span class="px-2 py-0.5 rounded-full bg-amber-100 dark:bg-amber-900/60 text-amber-700 dark:text-amber-300 font-mono-code text-[10px] font-bold">Future Unicorn</span>
+              </span>
+              <span class="font-mono-code text-[11px] text-amber-600 dark:text-amber-400 font-bold">2024 - Present</span>
+            </div>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Flagship Tech Venture • Global Scale</span>
+            <p class="text-xs leading-relaxed mt-1">
+              Building a next-generation tech startup engineered for exponential growth and unicorn valuation ($1B+). Developing proprietary core products, scalable cloud architecture, and high-velocity distribution.
+            </p>
+          </div>
+
+          <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700 flex flex-col gap-1">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-slate-900 dark:text-white">Lead Creator &amp; Web Architect</span>
+              <span class="font-mono-code text-[11px] text-primary dark:text-blue-400 font-semibold">2023 - Present</span>
+            </div>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Independent Practice • Worldwide</span>
+            <p class="text-xs leading-relaxed mt-1">
+              Delivered 50+ commercial client projects across SaaS frontends, viral YouTube documentary edits (1.2M+ views), and complete brand identities for global tech startups.
+            </p>
+          </div>
+
+          <div class="p-3.5 rounded-2xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/60 dark:border-slate-700 flex flex-col gap-1">
+            <div class="flex justify-between items-center">
+              <span class="font-bold text-slate-900 dark:text-white">Entrepreneurial Inception &amp; Explorer</span>
+              <span class="font-mono-code text-[11px] text-slate-500 font-semibold">2020 - 2023</span>
+            </div>
+            <span class="text-xs text-slate-500 dark:text-slate-400 font-medium">Started at Age 10 • Self-Taught Mastery</span>
+            <p class="text-xs leading-relaxed mt-1">
+              Began entrepreneurial journey at age 10 creating digital artwork, vector identities, and video edits. Systematically mastered node-based color grading, kinetic motion graphics, and full-stack software development.
+            </p>
+          </div>
+        </div>
+
+        <!-- Direct Contact Action -->
+        <div class="pt-2">
+          <a href="hire.html" onclick="document.getElementById('resume-drawer-backdrop').classList.remove('open');" class="w-full py-3 rounded-full bg-primary hover:bg-blue-700 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-md transition-all">
+            <span>Commission a Project With Shourya</span>
+            <span class="material-symbols-outlined text-base">arrow_forward</span>
+          </a>
+        </div>
+
+      </div>
+
+  <!-- ==================== CLIENT INQUIRIES LOG MODAL ==================== -->
+  <div id="inquiries-modal" class="modal-backdrop">
+    <div class="modal-content overflow-hidden p-0 max-w-3xl flex flex-col max-h-[85vh]">
+      <!-- Header -->
+      <div class="px-6 py-4 border-b border-slate-200 dark:border-slate-800 flex items-center justify-between bg-white dark:bg-slate-900 sticky top-0 z-10">
+        <div class="flex items-center gap-2.5">
+          <div class="p-2 rounded-xl bg-blue-50 dark:bg-blue-950/60 text-primary dark:text-blue-400 flex items-center justify-center">
+            <span class="material-symbols-outlined text-xl">mark_email_unread</span>
+          </div>
+          <div class="flex flex-col">
+            <h3 class="font-bold text-lg text-slate-900 dark:text-white flex items-center gap-2">
+              <span>Client Inquiries Log</span>
+              <span id="modal-inquiries-count" class="px-2 py-0.5 rounded-full bg-blue-100 dark:bg-blue-900/60 text-primary dark:text-blue-400 font-mono-code text-[11px] font-bold">0</span>
+            </h3>
+            <span class="text-xs text-slate-500 dark:text-slate-400">All submissions dispatched via Web3Forms &amp; backed up locally</span>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button id="inquiries-export-btn" class="px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 text-slate-700 dark:text-slate-300 font-mono-code text-xs font-semibold flex items-center gap-1.5 transition-all" title="Export as CSV file">
+            <span class="material-symbols-outlined text-sm">download</span>
+            <span class="hidden sm:inline">Export CSV</span>
+          </button>
+          <button id="inquiries-clear-btn" class="px-3 py-1.5 rounded-xl hover:bg-red-50 dark:hover:bg-red-950/50 text-slate-500 hover:text-red-600 dark:hover:text-red-400 font-mono-code text-xs font-semibold flex items-center gap-1.5 transition-all" title="Clear all local submissions">
+            <span class="material-symbols-outlined text-sm">delete</span>
+            <span class="hidden sm:inline">Clear</span>
+          </button>
+          <button id="inquiries-close-btn" class="p-2 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-500 hover:text-slate-900 dark:hover:text-white transition-colors">
+            <span class="material-symbols-outlined text-xl">close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Inquiries List Container -->
+      <div id="inquiries-list-container" class="p-6 flex flex-col gap-4 overflow-y-auto bg-slate-50/50 dark:bg-slate-950/40">
+        <!-- Dynamically rendered via script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Custom App Script Controller -->
+  <script src="script.js"></script>
+</body>
+</html>
